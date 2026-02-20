@@ -161,7 +161,7 @@ export default function GeneratorScreen() {
                 <View className="flex-row items-center gap-3">
                     {results.length > 0 && (
                         <Pressable
-                            onPress={() => { setResults([]); setKeyword(''); }}
+                            onPress={() => setResults([])}
                             className="px-4 py-2 bg-slate-50 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-600"
                         >
                             <Text className="text-sm font-semibold text-slate-600 dark:text-slate-300">Clear</Text>
