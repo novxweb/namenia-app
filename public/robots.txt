@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /app/
+Disallow: /app/_expo/
+Sitemap: https://namenia.com/sitemap.xml
