@@ -32,7 +32,7 @@ export default function GeneratorScreen() {
     const [results, setResults] = useState<GeneratedName[]>([]);
     const [loading, setLoading] = useState(false);
     const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
-    const [displayCount, setDisplayCount] = useState(10);
+
 
     // Filters / Options - Managed by Sidebar
     const [selectedStyle, setSelectedStyle] = useState<NameStyle>('auto');
@@ -63,7 +63,6 @@ export default function GeneratorScreen() {
         // If it's a new search, clear previous results immediately
         if (!append) {
             setResults([]);
-            setDisplayCount(BATCH_SIZE);
         }
 
         let newValidNames: GeneratedName[] = [];
@@ -128,11 +127,14 @@ export default function GeneratorScreen() {
             }
 
             if (append) {
-                setResults(prev => [...prev, ...newValidNames]);
-                setDisplayCount(prev => prev + BATCH_SIZE);
+                // Deduplicate: only add names not already in the list
+                setResults(prev => {
+                    const existingNames = new Set(prev.map(r => r.name.toLowerCase()));
+                    const deduplicated = newValidNames.filter(n => !existingNames.has(n.name.toLowerCase()));
+                    return [...deduplicated, ...prev];
+                });
             } else {
                 setResults(newValidNames);
-                setDisplayCount(BATCH_SIZE);
             }
 
         } catch (error) {
@@ -142,9 +144,7 @@ export default function GeneratorScreen() {
         }
     };
 
-    const handleLoadMore = () => {
-        handleGenerate(true);
-    };
+
 
     const ResultsContent = () => (
         <View>
@@ -199,7 +199,7 @@ export default function GeneratorScreen() {
             {results.length > 0 && (
                 <View>
                     <View className={cn("flex-row flex-wrap", viewMode === 'grid' ? "-mx-2" : "")}>
-                        {results.slice(0, displayCount).map((result, index) => (
+                        {results.map((result, index) => (
                             <View
                                 key={`${result.name}-${index}`}
                                 className={cn(
@@ -212,15 +212,21 @@ export default function GeneratorScreen() {
                         ))}
                     </View>
 
-                    {/* Load More */}
-                    {displayCount < results.length && (
-                        <Pressable
-                            onPress={handleLoadMore}
-                            className="mt-6 py-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 items-center"
-                        >
-                            <Text className="font-semibold text-slate-700 dark:text-slate-200">Show More</Text>
-                        </Pressable>
-                    )}
+                    {/* Generate More Names Button - at bottom */}
+                    <Pressable
+                        onPress={() => handleGenerate(true)}
+                        disabled={loading}
+                        style={{ cursor: loading ? 'not-allowed' : 'pointer' } as any}
+                        className={cn(
+                            "mt-6 py-4 bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 items-center flex-row justify-center gap-2 shadow-sm",
+                            loading && "opacity-60"
+                        )}
+                    >
+                        <Sparkles size={18} color={loading ? "#94a3b8" : "#00cba0"} />
+                        <Text className={cn("font-semibold", loading ? "text-slate-400" : "text-slate-700 dark:text-slate-200")}>
+                            {loading ? "Generating..." : "Generate More Names"}
+                        </Text>
+                    </Pressable>
                 </View>
             )}
         </View>
@@ -257,8 +263,8 @@ export default function GeneratorScreen() {
                 <View className="flex-1 flex-col md:flex-row bg-slate-50 dark:bg-slate-900 p-4 md:p-6 gap-6">
                     {/* Sidebar */}
                     <View
-                        className={cn("w-full md:w-80", !isDesktop && "h-80")}
-                        style={isDesktop ? { position: 'sticky', top: 90, height: '80vh' } as any : undefined}
+                        className="w-full md:w-80 shrink-0"
+                        style={isDesktop ? { position: 'sticky', top: 90, alignSelf: 'flex-start', maxHeight: '80vh' } as any : undefined}
                     >
                         <Sidebar
                             keyword={keyword} setKeyword={setKeyword}
