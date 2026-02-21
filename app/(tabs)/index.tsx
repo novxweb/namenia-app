@@ -45,16 +45,29 @@ export default function GeneratorScreen() {
 
     const [statusMessage, setStatusMessage] = useState('');
     const BATCH_SIZE = 6;
-
-    // Auto-generate if param is presentedTlds] = useState<string[]>(['com']);
     const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['English']);
+    const [autoGenerate, setAutoGenerate] = useState(false);
 
-    // Cleanup Effect
+    // Effect 1: Read ?q= param from URL on mount and pre-fill keyword
     useEffect(() => {
-        return () => {
-            // cleanup
-        };
+        if (Platform.OS === 'web' && typeof window !== 'undefined') {
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('q') || '';
+            if (q.trim()) {
+                setKeyword(q.trim());
+                setAutoGenerate(true); // Signal effect 2 to fire
+            }
+        }
     }, []);
+
+    // Effect 2: Auto-generate once the URL keyword has been committed to state
+    useEffect(() => {
+        if (autoGenerate && keyword.trim()) {
+            setAutoGenerate(false);
+            handleGenerate(false);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [autoGenerate, keyword]);
 
     const handleGenerate = async (append: boolean = false) => {
         if (!keyword.trim()) return;
