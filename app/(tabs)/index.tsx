@@ -128,9 +128,11 @@ export default function GeneratorScreen() {
                 }));
 
                 // 3. Strict Filter
-                const validBatch = checkedCandidates.filter(c =>
-                    c.availability?.domains?.some(d => d.available)
-                );
+                const validBatch = checkedCandidates.filter(c => {
+                    // If no TLDs are selected, accept all candidates (no domain filter)
+                    if (selectedTlds.length === 0) return true;
+                    return c.availability?.domains?.some(d => d.available);
+                });
 
                 newValidNames = [...newValidNames, ...validBatch];
 
