@@ -31,7 +31,7 @@ export default function GeneratorScreen() {
     const [keyword, setKeyword] = useState('');
     const [results, setResults] = useState<GeneratedName[]>([]);
     const [loading, setLoading] = useState(false);
-    const [viewMode, setViewMode] = useState<'list' | 'grid'>('list');
+    const [viewMode, setViewMode] = useState<'list' | 'grid'>(isDesktop ? 'grid' : 'list');
 
 
     // Filters / Options - Managed by Sidebar
