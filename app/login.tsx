@@ -10,35 +10,43 @@ export default function LoginScreen() {
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { mode } = useLocalSearchParams<{ mode: string }>();
-    const isSignUp = mode === 'signup';
-
-    // Redirect signup mode to home
-    React.useEffect(() => {
-        if (isSignUp) {
-            router.replace('/');
-        }
-    }, [isSignUp]);
+    const [authMode, setAuthMode] = useState<'signin' | 'signup' | 'forgot_password'>(mode === 'signup' ? 'signup' : 'signin');
+    const [errorMsg, setErrorMsg] = useState('');
+    const [successMsg, setSuccessMsg] = useState('');
 
     const handleAuth = async () => {
         setLoading(true);
+        setErrorMsg('');
+        setSuccessMsg('');
         try {
-            if (isSignUp) {
+            if (authMode === 'signup') {
                 const { error } = await supabase.auth.signUp({
                     email,
                     password,
                 });
                 if (error) throw error;
-                Alert.alert('Success', 'Check your email for the confirmation link!');
-            } else {
+                setSuccessMsg('Check your email for the confirmation link!');
+            } else if (authMode === 'signin') {
                 const { error } = await supabase.auth.signInWithPassword({
                     email,
                     password,
                 });
                 if (error) throw error;
                 router.replace('/(tabs)');
+            } else if (authMode === 'forgot_password') {
+                const resetUrl = Platform.OS === 'web'
+                    ? `${window.location.origin}/update-password`
+                    : 'namenia://update-password';
+
+                const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                    redirectTo: resetUrl,
+                });
+                if (error) throw error;
+                setSuccessMsg('Password reset instructions sent to your email.');
+                // Optionally clear the mode here or let them tap "Back to Sign in"
             }
         } catch (error: any) {
-            Alert.alert('Error', error.message);
+            setErrorMsg(error.message);
         } finally {
             setLoading(false);
         }
@@ -51,14 +59,26 @@ export default function LoginScreen() {
                     <View className="w-full max-w-md mx-auto gap-6">
                         <View className="items-center">
                             <Text className="text-3xl font-bold text-slate-900 dark:text-white">
-                                {isSignUp ? 'Create Account' : 'Welcome Back'}
+                                {authMode === 'signup' ? 'Create Account' : authMode === 'signin' ? 'Welcome Back' : 'Reset Password'}
                             </Text>
-                            <Text className="text-slate-500 dark:text-slate-400 mt-2">
-                                {isSignUp ? 'Sign up to get started' : 'Sign in to continue'}
+                            <Text className="text-slate-500 dark:text-slate-400 mt-2 text-center">
+                                {authMode === 'signup' ? 'Sign up to get started' : authMode === 'signin' ? 'Sign in to continue' : 'Enter your email and we will send you a reset link'}
                             </Text>
                         </View>
 
                         <View className="gap-4">
+                            {errorMsg ? (
+                                <View className="bg-red-50 dark:bg-red-900/10 p-4 rounded-lg border border-red-200 dark:border-red-900/30">
+                                    <Text className="text-red-600 dark:text-red-400 text-sm font-medium">{errorMsg}</Text>
+                                </View>
+                            ) : null}
+
+                            {successMsg ? (
+                                <View className="bg-green-50 dark:bg-green-900/10 p-4 rounded-lg border border-green-200 dark:border-green-900/30">
+                                    <Text className="text-green-600 dark:text-green-400 text-sm font-medium">{successMsg}</Text>
+                                </View>
+                            ) : null}
+
                             <View className="gap-2">
                                 <Text className="text-slate-700 dark:text-slate-300 font-medium">Email</Text>
                                 <TextInput
@@ -72,50 +92,68 @@ export default function LoginScreen() {
                                 />
                             </View>
 
-                            <View className="gap-2">
-                                <Text className="text-slate-700 dark:text-slate-300 font-medium">Password</Text>
-                                <TextInput
-                                    className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white"
-                                    placeholder="••••••••"
-                                    placeholderTextColor="#94a3b8"
-                                    value={password}
-                                    onChangeText={setPassword}
-                                    secureTextEntry
-                                />
-                            </View>
+                            {authMode !== 'forgot_password' && (
+                                <View className="gap-2">
+                                    <Text className="text-slate-700 dark:text-slate-300 font-medium">Password</Text>
+                                    <TextInput
+                                        className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white"
+                                        placeholder="••••••••"
+                                        placeholderTextColor="#94a3b8"
+                                        value={password}
+                                        onChangeText={setPassword}
+                                        secureTextEntry
+                                    />
+                                </View>
+                            )}
 
                             <Pressable
                                 onPress={handleAuth}
-                                disabled={loading}
-                                className="bg-blue-600 active:bg-blue-700 p-4 rounded-lg items-center mt-2"
+                                disabled={loading || !email || (authMode !== 'forgot_password' && !password)}
+                                className="bg-blue-600 active:bg-blue-700 disabled:opacity-50 p-4 rounded-lg items-center mt-2"
                             >
                                 {loading ? (
                                     <ActivityIndicator color="white" />
                                 ) : (
                                     <Text className="text-white font-bold text-base">
-                                        {isSignUp ? 'Sign Up' : 'Sign In'}
+                                        {authMode === 'signup' ? 'Sign Up' : authMode === 'signin' ? 'Sign In' : 'Send Reset Link'}
                                     </Text>
                                 )}
                             </Pressable>
 
-                            {/* HIDDEN FOR NOW
-                            <Pressable
-                                onPress={() => router.setParams({ mode: isSignUp ? 'signin' : 'signup' })}
-                                className="items-center p-2"
-                            >
-                                <Text className="text-blue-600 dark:text-blue-400">
-                                    {isSignUp ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
-                                </Text>
-                            </Pressable>
-                            */}
-                            <Pressable
-                                onPress={() => router.push('/update-password')}
-                                className="items-center p-2"
-                            >
-                                <Text className="text-slate-500 hover:text-slate-700 dark:text-slate-400">
-                                    Forgot Password?
-                                </Text>
-                            </Pressable>
+                            {authMode !== 'forgot_password' && (
+                                <>
+                                    <Pressable
+                                        onPress={() => setAuthMode(authMode === 'signup' ? 'signin' : 'signup')}
+                                        className="items-center p-2"
+                                    >
+                                        <Text className="text-blue-600 dark:text-blue-400">
+                                            {authMode === 'signup' ? 'Already have an account? Sign In' : "Don't have an account? Sign Up"}
+                                        </Text>
+                                    </Pressable>
+
+                                    {authMode === 'signin' && (
+                                        <Pressable
+                                            onPress={() => setAuthMode('forgot_password')}
+                                            className="items-center p-2"
+                                        >
+                                            <Text className="text-slate-500 hover:text-slate-700 dark:text-slate-400">
+                                                Forgot Password?
+                                            </Text>
+                                        </Pressable>
+                                    )}
+                                </>
+                            )}
+
+                            {authMode === 'forgot_password' && (
+                                <Pressable
+                                    onPress={() => setAuthMode('signin')}
+                                    className="items-center p-2"
+                                >
+                                    <Text className="text-blue-600 dark:text-blue-400">
+                                        Back to Sign In
+                                    </Text>
+                                </Pressable>
+                            )}
                         </View>
                     </View>
                 </ScrollView>

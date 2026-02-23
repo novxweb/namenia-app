@@ -21,12 +21,18 @@ import { INDUSTRIES, COUNTRIES, TLDS, SOCIALS } from '@/core/constants';
 import { ResultCard } from '@/components/generator/ResultCard';
 import { Sidebar } from '@/components/generator/Sidebar';
 import { useShortlist } from '@/core/contexts/ShortlistContext';
+import { AuthContext } from '@/core/contexts/AuthContextValue';
+import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useContext } from 'react';
 
 export default function GeneratorScreen() {
     const { width } = useWindowDimensions();
     const isDesktop = width >= 768;
+    const router = useRouter();
 
     const { shortlist } = useShortlist();
+    const { session } = useContext(AuthContext) || {};
 
     const [keyword, setKeyword] = useState('');
     const [results, setResults] = useState<GeneratedName[]>([]);
@@ -69,8 +75,62 @@ export default function GeneratorScreen() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [autoGenerate, keyword]);
 
+    // Effect 3: Check for pending generations after successful login
+    useEffect(() => {
+        if (session) {
+            const checkPending = async () => {
+                const pendingStateStr = await AsyncStorage.getItem('pendingGenerationState');
+                if (pendingStateStr) {
+                    try {
+                        const state = JSON.parse(pendingStateStr);
+                        if (state.keyword) setKeyword(state.keyword);
+                        if (state.selectedStyle) setSelectedStyle(state.selectedStyle);
+                        if (state.randomness) setRandomness(state.randomness);
+                        if (state.selectedIndustry) setSelectedIndustry(state.selectedIndustry);
+                        if (state.selectedCountry) setSelectedCountry(state.selectedCountry);
+                        if (state.selectedVibe) setSelectedVibe(state.selectedVibe);
+                        if (state.selectedTlds) setSelectedTlds(state.selectedTlds);
+                        if (state.selectedSocials) setSelectedSocials(state.selectedSocials);
+                        if (state.selectedLanguages) setSelectedLanguages(state.selectedLanguages);
+                    } catch (e) {
+                        console.error("Failed to parse pending state");
+                    }
+                    await AsyncStorage.removeItem('pendingGenerationState');
+                    setAutoGenerate(true);
+                } else {
+                    // Fallback for older stored formats
+                    const oldPending = await AsyncStorage.getItem('pendingKeyword');
+                    if (oldPending) {
+                        setKeyword(oldPending);
+                        await AsyncStorage.removeItem('pendingKeyword');
+                        setAutoGenerate(true);
+                    }
+                }
+            };
+            checkPending();
+        }
+    }, [session]);
+
     const handleGenerate = async (append: boolean = false) => {
         if (!keyword.trim()) return;
+
+        // AUTHENTICATION GATE
+        if (!session) {
+            const pendingState = {
+                keyword: keyword.trim(),
+                selectedStyle,
+                randomness,
+                selectedIndustry,
+                selectedCountry,
+                selectedVibe,
+                selectedTlds,
+                selectedSocials,
+                selectedLanguages
+            };
+            await AsyncStorage.setItem('pendingGenerationState', JSON.stringify(pendingState));
+            router.push('/login');
+            return;
+        }
 
         setLoading(true);
         // If it's a new search, clear previous results immediately

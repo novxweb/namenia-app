@@ -7,19 +7,22 @@ import { supabase } from '@/lib/supabase';
 export default function UpdatePasswordScreen() {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+    const [successMsg, setSuccessMsg] = useState('');
     const router = useRouter();
 
     const handleUpdatePassword = async () => {
         setLoading(true);
+        setErrorMsg('');
+        setSuccessMsg('');
         try {
             const { error } = await supabase.auth.updateUser({
                 password: password
             });
             if (error) throw error;
-            Alert.alert('Success', 'Password updated successfully!');
-            router.replace('/(tabs)');
+            setSuccessMsg('Password updated successfully!');
         } catch (error: any) {
-            Alert.alert('Error', error.message);
+            setErrorMsg(error.message);
         } finally {
             setLoading(false);
         }
@@ -52,19 +55,37 @@ export default function UpdatePasswordScreen() {
                                 />
                             </View>
 
-                            <Pressable
-                                onPress={handleUpdatePassword}
-                                disabled={loading}
-                                className="bg-blue-600 active:bg-blue-700 p-4 rounded-lg items-center mt-2"
-                            >
-                                {loading ? (
-                                    <ActivityIndicator color="white" />
-                                ) : (
-                                    <Text className="text-white font-bold text-base">
-                                        Update Password
-                                    </Text>
-                                )}
-                            </Pressable>
+                            {errorMsg ? (
+                                <View className="bg-red-50 dark:bg-red-900/10 p-4 rounded-lg border border-red-200 dark:border-red-900/30">
+                                    <Text className="text-red-600 dark:text-red-400 text-sm font-medium">{errorMsg}</Text>
+                                </View>
+                            ) : null}
+
+                            {successMsg ? (
+                                <View className="bg-green-50 dark:bg-green-900/10 p-4 rounded-lg border border-green-200 dark:border-green-900/30">
+                                    <Text className="text-green-600 dark:text-green-400 text-sm font-medium">{successMsg}</Text>
+                                    <Pressable
+                                        onPress={() => router.replace('/(tabs)')}
+                                        className="bg-green-600 active:bg-green-700 p-3 rounded-lg items-center mt-4"
+                                    >
+                                        <Text className="text-white font-bold">Go to Profile</Text>
+                                    </Pressable>
+                                </View>
+                            ) : (
+                                <Pressable
+                                    onPress={handleUpdatePassword}
+                                    disabled={loading || !password}
+                                    className="bg-blue-600 active:bg-blue-700 disabled:opacity-50 p-4 rounded-lg items-center mt-2"
+                                >
+                                    {loading ? (
+                                        <ActivityIndicator color="white" />
+                                    ) : (
+                                        <Text className="text-white font-bold text-base">
+                                            Update Password
+                                        </Text>
+                                    )}
+                                </Pressable>
+                            )}
                         </View>
                     </View>
                 </ScrollView>

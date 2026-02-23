@@ -11,6 +11,12 @@ export default function ProfileScreen() {
     const [fullName, setFullName] = useState('');
     const [avatarUrl, setAvatarUrl] = useState('');
 
+    // Feedback states for different sections
+    const [profileError, setProfileError] = useState('');
+    const [profileSuccess, setProfileSuccess] = useState('');
+    const [securityError, setSecurityError] = useState('');
+    const [securitySuccess, setSecuritySuccess] = useState('');
+
     useEffect(() => {
         if (user) {
             getProfile();
@@ -41,9 +47,7 @@ export default function ProfileScreen() {
                 setFullName(user.user_metadata?.full_name || '');
             }
         } catch (error) {
-            if (error instanceof Error) {
-                Alert.alert("Error", error.message);
-            }
+            console.error("Error loading profile", error);
         } finally {
             setLoading(false);
         }
@@ -58,6 +62,9 @@ export default function ProfileScreen() {
     }) {
         try {
             setLoading(true);
+            setProfileError('');
+            setProfileSuccess('');
+
             if (!user) throw new Error('No user on the session!');
 
             const updates = {
@@ -72,12 +79,12 @@ export default function ProfileScreen() {
             if (error) {
                 throw error;
             } else {
-                Alert.alert("Success", "Profile updated!");
+                setProfileSuccess("Profile updated successfully!");
+                // Clear success message after 3 seconds
+                setTimeout(() => setProfileSuccess(''), 3000);
             }
-        } catch (error) {
-            if (error instanceof Error) {
-                Alert.alert("Error", error.message);
-            }
+        } catch (error: any) {
+            setProfileError(error.message || "Failed to update profile");
         } finally {
             setLoading(false);
         }
@@ -88,6 +95,8 @@ export default function ProfileScreen() {
             <Stack.Screen options={{ headerShown: false }} />
             <ScrollView contentContainerClassName="p-6">
                 <View className="max-w-md mx-auto w-full gap-8">
+
+                    {/* Header Section */}
                     <View className="items-center gap-4">
                         <View className="h-24 w-24 rounded-full bg-slate-200 dark:bg-slate-800 items-center justify-center overflow-hidden border-2 border-slate-300 dark:border-slate-700">
                             {avatarUrl ? (
@@ -98,9 +107,9 @@ export default function ProfileScreen() {
                                 </Text>
                             )}
                         </View>
-                        <View className="items-center">
+                        <View className="items-center mb-4">
                             <Text className="text-2xl font-bold text-slate-900 dark:text-white">
-                                {fullName || 'User'}
+                                {fullName || 'User Profile'}
                             </Text>
                             <Text className="text-slate-500 dark:text-slate-400">
                                 {user?.email}
@@ -108,59 +117,164 @@ export default function ProfileScreen() {
                         </View>
                     </View>
 
-                    <View className="gap-4">
-                        <View className="gap-2">
-                            <Text className="text-sm font-medium text-slate-700 dark:text-slate-300">Email</Text>
-                            <TextInput
-                                value={user?.email}
-                                editable={false}
-                                className="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-500 dark:text-slate-400"
-                            />
-                        </View>
-
-                        <View className="gap-2">
-                            <Text className="text-sm font-medium text-slate-700 dark:text-slate-300">Full Name</Text>
-                            <TextInput
-                                value={fullName}
-                                onChangeText={setFullName}
-                                placeholder="Your Name"
-                                placeholderTextColor="#94a3b8"
-                                className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white"
-                            />
-                        </View>
-
-                        {!user ? (
+                    {/* Authentication Wall */}
+                    {!user ? (
+                        <View className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 gap-4">
+                            <Text className="text-center text-slate-600 dark:text-slate-300">
+                                You need to be logged in to view your profile settings.
+                            </Text>
                             <Pressable
                                 onPress={() => router.push('/login')}
-                                className="bg-blue-600 active:bg-blue-700 p-4 rounded-lg items-center mt-2"
+                                className="bg-blue-600 active:bg-blue-700 p-4 rounded-lg items-center"
                             >
                                 <Text className="text-white font-bold text-base">
-                                    Sign In
+                                    Sign In / Register
                                 </Text>
                             </Pressable>
-                        ) : (
-                            <>
+                        </View>
+                    ) : (
+                        <View className="gap-8">
+
+                            {/* Personal Info Section */}
+                            <View className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 gap-4">
+                                <Text className="font-bold text-lg text-slate-900 dark:text-white mb-2">Personal Information</Text>
+
+                                {profileError ? (
+                                    <View className="bg-red-50 dark:bg-red-900/10 p-3 rounded-lg border border-red-200 dark:border-red-900/30">
+                                        <Text className="text-red-600 dark:text-red-400 text-sm font-medium">{profileError}</Text>
+                                    </View>
+                                ) : null}
+
+                                {profileSuccess ? (
+                                    <View className="bg-green-50 dark:bg-green-900/10 p-3 rounded-lg border border-green-200 dark:border-green-900/30">
+                                        <Text className="text-green-600 dark:text-green-400 text-sm font-medium">{profileSuccess}</Text>
+                                    </View>
+                                ) : null}
+
+                                <View className="gap-2">
+                                    <Text className="text-sm font-medium text-slate-500 dark:text-slate-400">Email Address</Text>
+                                    <TextInput
+                                        value={user?.email}
+                                        editable={false}
+                                        className="bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-500 dark:text-slate-400"
+                                    />
+                                </View>
+                                <View className="gap-2">
+                                    <Text className="text-sm font-medium text-slate-500 dark:text-slate-400">Full Name</Text>
+                                    <TextInput
+                                        value={fullName}
+                                        onChangeText={setFullName}
+                                        placeholder="Your Name"
+                                        placeholderTextColor="#94a3b8"
+                                        className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white"
+                                    />
+                                </View>
                                 <Pressable
                                     onPress={() => updateProfile({ full_name: fullName, avatar_url: avatarUrl })}
                                     disabled={loading}
-                                    className="bg-blue-600 active:bg-blue-700 p-4 rounded-lg items-center mt-2"
+                                    className="bg-slate-900 dark:bg-white active:bg-slate-800 dark:active:bg-slate-200 p-4 rounded-lg items-center mt-2"
                                 >
-                                    <Text className="text-white font-bold text-base">
-                                        {loading ? "Saving..." : "Update Profile"}
+                                    <Text className="text-white dark:text-slate-900 font-bold text-base">
+                                        {loading ? "Saving..." : "Save Changes"}
                                     </Text>
                                 </Pressable>
+                            </View>
+
+                            {/* Security Section */}
+                            <View className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 gap-4">
+                                <Text className="font-bold text-lg text-slate-900 dark:text-white mb-2">Security</Text>
+
+                                {securityError ? (
+                                    <View className="bg-red-50 dark:bg-red-900/10 p-3 rounded-lg border border-red-200 dark:border-red-900/30">
+                                        <Text className="text-red-600 dark:text-red-400 text-sm font-medium">{securityError}</Text>
+                                    </View>
+                                ) : null}
+
+                                {securitySuccess ? (
+                                    <View className="bg-green-50 dark:bg-green-900/10 p-3 rounded-lg border border-green-200 dark:border-green-900/30">
+                                        <Text className="text-green-600 dark:text-green-400 text-sm font-medium">{securitySuccess}</Text>
+                                    </View>
+                                ) : null}
 
                                 <Pressable
-                                    onPress={() => signOut()}
-                                    className="bg-slate-200 dark:bg-slate-800 active:bg-slate-300 dark:active:bg-slate-700 p-4 rounded-lg items-center mt-2"
+                                    onPress={async () => {
+                                        if (!user?.email) return;
+                                        try {
+                                            setLoading(true);
+                                            setSecurityError('');
+                                            setSecuritySuccess('');
+                                            const { error } = await supabase.auth.resetPasswordForEmail(user.email, {
+                                                redirectTo: `${window.location.origin}/update-password`,
+                                            });
+                                            if (error) throw error;
+                                            setSecuritySuccess('Check your email for a password reset link.');
+                                        } catch (e: any) {
+                                            setSecurityError(e.message || "Failed to send reset link");
+                                        } finally {
+                                            setLoading(false);
+                                        }
+                                    }}
+                                    disabled={loading}
+                                    className="bg-slate-100 dark:bg-slate-700 active:bg-slate-200 dark:active:bg-slate-600 p-4 rounded-lg items-center"
                                 >
-                                    <Text className="text-slate-900 dark:text-white font-bold text-base">
+                                    <Text className="text-slate-900 dark:text-white font-medium text-base">
+                                        Reset Password
+                                    </Text>
+                                </Pressable>
+                                <Pressable
+                                    onPress={() => signOut()}
+                                    className="bg-slate-100 dark:bg-slate-700 active:bg-slate-200 dark:active:bg-slate-600 p-4 rounded-lg items-center"
+                                >
+                                    <Text className="text-slate-900 dark:text-white font-medium text-base">
                                         Sign Out
                                     </Text>
                                 </Pressable>
-                            </>
-                        )}
-                    </View>
+                            </View>
+
+                            {/* Danger Zone */}
+                            <View className="bg-red-50 dark:bg-red-900/10 p-6 rounded-xl border border-red-200 dark:border-red-900/30 gap-4 mt-4">
+                                <Text className="font-bold text-lg text-red-600 dark:text-red-400 mb-2">Danger Zone</Text>
+                                <Text className="text-red-600/80 dark:text-red-400/80 text-sm mb-2">
+                                    Once you delete your account, there is no going back. Please be certain.
+                                </Text>
+                                <Pressable
+                                    onPress={() => {
+                                        Alert.alert(
+                                            'Delete Account',
+                                            'Are you absolutely sure? This action cannot be undone and will permanently delete your account and all associated data.',
+                                            [
+                                                { text: 'Cancel', style: 'cancel' },
+                                                {
+                                                    text: 'Delete',
+                                                    style: 'destructive',
+                                                    onPress: async () => {
+                                                        try {
+                                                            setLoading(true);
+                                                            const { error } = await supabase.rpc('delete_user');
+                                                            if (error) throw error;
+                                                            Alert.alert('Deleted', 'Your account has been deleted.');
+                                                            signOut();
+                                                        } catch (e: any) {
+                                                            Alert.alert('Error Deleting Account', e.message);
+                                                        } finally {
+                                                            setLoading(false);
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        );
+                                    }}
+                                    disabled={loading}
+                                    className="bg-red-600 active:bg-red-700 p-4 rounded-lg items-center"
+                                >
+                                    <Text className="text-white font-bold text-base">
+                                        Delete Account
+                                    </Text>
+                                </Pressable>
+                            </View>
+
+                        </View>
+                    )}
                 </View>
             </ScrollView>
         </SafeAreaView>
