@@ -67,27 +67,50 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
 
     // When user logs in, merge DB shortlist with local
     useEffect(() => {
-        if (!userId || dbLoaded) return;
+        if (!userId) return;
 
-        fetchShortlistFromDB(userId).then(dbItems => {
-            setDbLoaded(true);
-            if (dbItems && dbItems.length > 0) {
+        // Fetch DB data immediately upon having a valid user
+        fetchShortlistFromDB(userId).then(dbData => {
+            const dbItems = dbData.names || [];
+            const dbFolders = dbData.folders || [];
+
+            // Merge Folders
+            if (dbFolders.length > 0) {
+                setFolders(prev => {
+                    const mergedFolders = [...dbFolders];
+                    const dbFolderIds = new Set(dbFolders.map(f => f.id));
+                    const uniqueLocalFolders = prev.filter(f => !dbFolderIds.has(f.id));
+                    mergedFolders.push(...uniqueLocalFolders);
+                    AsyncStorage.setItem('klovana_folders', JSON.stringify(mergedFolders));
+                    return mergedFolders;
+                });
+            }
+
+            // Merge Names
+            if (dbItems.length > 0) {
                 setShortlist(prev => {
-                    // Merge: DB items + local items not already in DB
+                    // Start merged array with DB items
+                    const merged = [...dbItems];
                     const dbNames = new Set(dbItems.map(i => i.name));
+
+                    // Add any local items that aren't in the DB yet
                     const uniqueLocal = prev.filter(i => !dbNames.has(i.name));
-                    const merged = [...dbItems, ...uniqueLocal];
-                    // Save merged list
+                    merged.push(...uniqueLocal);
+
+                    // Optimistically update DB with newly merged lists
+                    // (we assume folders might have also needed merging)
+                    saveShortlistToDB(userId, merged, folders);
+
+                    // Overwrite local storage so it stays in sync
                     AsyncStorage.setItem('klovana_shortlist', JSON.stringify(merged));
-                    saveShortlistToDB(userId, merged);
                     return merged;
                 });
-            } else if (shortlist.length > 0) {
-                // No DB data but local data exists — push local to DB
-                saveShortlistToDB(userId, shortlist);
+            } else if (shortlist.length > 0 || folders.length > 1) {
+                // No DB data but local data exists — push local up to DB
+                saveShortlistToDB(userId, shortlist, folders);
             }
         });
-    }, [userId]);
+    }, [userId]); // Removed dbLoaded so it runs dependably on login state change
 
     const saveShortlist = async (items: GeneratedName[]) => {
         setShortlist(items);
@@ -95,13 +118,17 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
 
         // Sync to Supabase if logged in
         if (userId) {
-            saveShortlistToDB(userId, items);
+            saveShortlistToDB(userId, items, folders);
         }
     };
 
     const saveFolders = async (folderList: Folder[]) => {
         setFolders(folderList);
         await AsyncStorage.setItem('klovana_folders', JSON.stringify(folderList));
+
+        if (userId) {
+            saveShortlistToDB(userId, shortlist, folderList);
+        }
     };
 
     const addToShortlist = (item: GeneratedName, folderId?: string) => {

@@ -1,37 +1,46 @@
 import { supabase } from '@/lib/supabase';
 import { GeneratedName } from '@/core/services/generator';
+import { Folder } from '@/core/utils/folder-manager';
 
 const TABLE_NAME = 'shortlists';
 
+interface ShortlistDBData {
+    names: GeneratedName[];
+    folders: Folder[];
+}
+
 /**
- * Fetch the user's shortlist from Supabase
+ * Fetch the user's shortlist and folders from Supabase
  */
-export async function fetchShortlistFromDB(userId: string): Promise<GeneratedName[]> {
+export async function fetchShortlistFromDB(userId: string): Promise<ShortlistDBData> {
     try {
         const { data, error } = await supabase
             .from(TABLE_NAME)
-            .select('name_data')
+            .select('name_data, folder_data')
             .eq('user_id', userId)
             .single();
 
         if (error) {
             // PGRST116 = no rows found, that's fine for new users
-            if (error.code === 'PGRST116') return [];
+            if (error.code === 'PGRST116') return { names: [], folders: [] };
             console.warn('Failed to fetch shortlist from DB:', error.message);
-            return [];
+            return { names: [], folders: [] };
         }
 
-        return data?.name_data || [];
+        return {
+            names: data?.name_data || [],
+            folders: data?.folder_data || []
+        };
     } catch (e) {
         console.warn('Shortlist DB fetch error:', e);
-        return [];
+        return { names: [], folders: [] };
     }
 }
 
 /**
- * Save/replace the entire shortlist for a user in Supabase
+ * Save/replace the entire shortlist and folders for a user in Supabase
  */
-export async function saveShortlistToDB(userId: string, items: GeneratedName[]): Promise<void> {
+export async function saveShortlistToDB(userId: string, items: GeneratedName[], folders: Folder[]): Promise<void> {
     try {
         const { error } = await supabase
             .from(TABLE_NAME)
@@ -39,6 +48,7 @@ export async function saveShortlistToDB(userId: string, items: GeneratedName[]):
                 {
                     user_id: userId,
                     name_data: items,
+                    folder_data: folders,
                     updated_at: new Date().toISOString(),
                 },
                 { onConflict: 'user_id' }
