@@ -17,31 +17,36 @@ export interface GeneratedName {
 // --- Expanded Vocabulary Data ---
 
 const COMPOUND_SUFFIXES = [
-  'flow', 'stack', 'hub', 'lab', 'works', 'box', 'source', 'grid', 'core', 'base',
-  'space', 'sync', 'desk', 'mind', 'cast', 'ship', 'bird', 'kite', 'pixel', 'byte',
-  'sphere', 'wave', 'dash', 'pod', 'dock', 'port', 'gate', 'bridge', 'view', 'sight'
+  'flow', 'stack', 'works', 'grid', 'core', 'base',
+  'space', 'sync', 'mind', 'cast', 'ship', 'bird', 'kite', 'pixel', 'byte',
+  'sphere', 'wave', 'dash', 'pod', 'dock', 'port', 'gate', 'bridge', 'view', 'sight',
+  'flare', 'shift', 'sparc', 'loom', 'tide', 'crest'
 ];
 
 const COMPOUND_PREFIXES = [
-  'flow', 'snap', 'zen', 'core', 'net', 'data', 'click', 'smart', 'tech', 'hyper',
+  'flow', 'snap', 'zen', 'core', 'net', 'smart', 'hyper',
   'meta', 'cyber', 'digi', 'omni', 'poly', 'uni', 'pro', 'max', 'ultra', 'super',
-  'auto', 'dyna', 'flex', 'swift', 'quick', 'flash', 'bright', 'clear', 'bold', 'true'
+  'auto', 'dyna', 'flex', 'swift', 'quick', 'flash', 'bright', 'clear', 'bold', 'true',
+  'aero', 'velo', 'kine', 'lumi', 'nova'
 ];
 
 const TECH_ROOTS = [
   'vertex', 'nexus', 'prism', 'flux', 'spark', 'pulse', 'wave', 'sphere', 'arc', 'node',
   'vector', 'pixel', 'logic', 'quantum', 'orbit', 'axis', 'atlas', 'apex', 'aero', 'astra',
   'cipher', 'coder', 'daemon', 'ether', 'helix', 'iodine', 'kinetic', 'lunar', 'matrix', 'nebula',
-  'optic', 'phase', 'qubit', 'radar', 'sonic', 'terra', 'unity', 'vision', 'warp', 'zenith'
+  'optic', 'phase', 'qubit', 'radar', 'sonic', 'terra', 'unity', 'vision', 'warp', 'zenith',
+  'aurora', 'chronos', 'echo', 'glide', 'halo', 'ion', 'kaly', 'lyra', 'mythos', 'onyx'
 ];
 
 const BRANDABLE_SUFFIXES = [
-  'ify', 'ly', 'io', 'ai', 'sys', 'gen', 'ops', 'iq', 'os',
-  'ia', 'co', 'is', 'us', 'ix', 'ex', 'on', 'en', 'an', 'ar', 'er'
+  'ia', 'io', 'ai', 'sys', 'gen', 'ops', 'iq', 'os',
+  'is', 'us', 'ix', 'ex', 'on', 'en', 'an', 'ar', 'er',
+  'ara', 'era', 'ora', 'ova', 'iva', 'una'
 ];
 
 const LATIN_PREFIXES = [
-  'nov', 'vel', 'sol', 'ver', 'viv', 'lum', 'aud', 'vis', 'cog', 'scio'
+  'nov', 'vel', 'sol', 'ver', 'viv', 'lum', 'aud', 'vis', 'cog', 'scio',
+  'alt', 'ign', 'jub', 'magn', 'omni'
 ];
 
 const ABSTRACT_MARKERS = [
@@ -90,15 +95,22 @@ function extractKeywords(rawKeyword: string): string[] {
     .filter(w => w.length >= 3 && !STOP_WORDS.has(w));
 
   if (words.length === 0) {
-    // Fallback: just use the first word
+    // Fallback: just use the first word, cleaned
     const fallback = rawKeyword.toLowerCase().trim().split(/\s+/)[0]?.replace(/[^a-z]/g, '');
     return fallback ? [fallback] : ['brand'];
   }
 
-  // Sort by length (prefer shorter, punchier words) but keep at most 3
-  return words
-    .sort((a, b) => a.length - b.length)
-    .slice(0, 3);
+  // Score words conceptually: longer words and words that aren't common verbs tend to make better roots
+  const scoredWords = words.map(w => {
+    let score = w.length;
+    if (['track', 'make', 'do', 'find', 'get', 'use', 'let'].includes(w)) score -= 5;
+    return { word: w, score };
+  });
+
+  return scoredWords
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map(w => w.word);
 }
 
 /**
