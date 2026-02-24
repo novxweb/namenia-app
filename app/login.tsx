@@ -39,11 +39,16 @@ export default function LoginScreen() {
                     throw new Error("Passwords do not match.");
                 }
 
+                const redirectUrl = Platform.OS === 'web'
+                    ? (window.location.hostname === 'localhost' ? `${window.location.origin}/` : `${window.location.origin}/app/`)
+                    : undefined;
+
                 const { error } = await supabase.auth.signUp({
                     email,
                     password,
                     options: {
                         captchaToken: turnstileToken,
+                        emailRedirectTo: redirectUrl,
                         data: {
                             full_name: name.trim()
                         }
