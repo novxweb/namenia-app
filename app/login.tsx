@@ -8,6 +8,8 @@ import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile';
 export default function LoginScreen() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
     const router = useRouter();
     const { mode } = useLocalSearchParams<{ mode: string }>();
@@ -30,10 +32,22 @@ export default function LoginScreen() {
         setSuccessMsg('');
         try {
             if (authMode === 'signup') {
+                if (!name.trim()) {
+                    throw new Error("Please enter your name.");
+                }
+                if (password !== confirmPassword) {
+                    throw new Error("Passwords do not match.");
+                }
+
                 const { error } = await supabase.auth.signUp({
                     email,
                     password,
-                    options: { captchaToken: turnstileToken }
+                    options: {
+                        captchaToken: turnstileToken,
+                        data: {
+                            full_name: name.trim()
+                        }
+                    }
                 });
                 if (error) throw error;
                 setSuccessMsg('Check your email for the confirmation link!');
@@ -96,6 +110,20 @@ export default function LoginScreen() {
                                 </View>
                             ) : null}
 
+                            {authMode === 'signup' && (
+                                <View className="gap-2">
+                                    <Text className="text-slate-700 dark:text-slate-300 font-medium">Name</Text>
+                                    <TextInput
+                                        className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white"
+                                        placeholder="Your Name"
+                                        placeholderTextColor="#94a3b8"
+                                        value={name}
+                                        onChangeText={setName}
+                                        autoCapitalize="words"
+                                    />
+                                </View>
+                            )}
+
                             <View className="gap-2">
                                 <Text className="text-slate-700 dark:text-slate-300 font-medium">Email</Text>
                                 <TextInput
@@ -123,6 +151,20 @@ export default function LoginScreen() {
                                 </View>
                             )}
 
+                            {authMode === 'signup' && (
+                                <View className="gap-2">
+                                    <Text className="text-slate-700 dark:text-slate-300 font-medium">Confirm Password</Text>
+                                    <TextInput
+                                        className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-3 text-slate-900 dark:text-white"
+                                        placeholder="••••••••"
+                                        placeholderTextColor="#94a3b8"
+                                        value={confirmPassword}
+                                        onChangeText={setConfirmPassword}
+                                        secureTextEntry
+                                    />
+                                </View>
+                            )}
+
                             {Platform.OS === 'web' && process.env.EXPO_PUBLIC_TURNSTILE_SITE_KEY && (
                                 <View className="items-center my-2">
                                     <Turnstile
@@ -135,7 +177,7 @@ export default function LoginScreen() {
 
                             <Pressable
                                 onPress={handleAuth}
-                                disabled={loading || !email || (authMode !== 'forgot_password' && !password) || (Platform.OS === 'web' && !turnstileToken)}
+                                disabled={loading || !email || (authMode !== 'forgot_password' && !password) || (authMode === 'signup' && (!name || !confirmPassword)) || (Platform.OS === 'web' && !turnstileToken)}
                                 className="bg-blue-600 active:bg-blue-700 disabled:opacity-50 p-4 rounded-lg items-center mt-2"
                             >
                                 {loading ? (

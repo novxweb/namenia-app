@@ -160,7 +160,7 @@ export default function ProfileScreen() {
                                     />
                                 </View>
                                 <View className="gap-2">
-                                    <Text className="text-sm font-medium text-slate-500 dark:text-slate-400">Full Name</Text>
+                                    <Text className="text-sm font-medium text-slate-500 dark:text-slate-400">Name</Text>
                                     <TextInput
                                         value={fullName}
                                         onChangeText={setFullName}
