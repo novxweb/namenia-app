@@ -40,12 +40,34 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
 
     const userId = user?.id;
 
+    // Helper to ensure lists are valid and deeply deduplicated
+    const cleanShortlist = (arr: any[]): GeneratedName[] => {
+        if (!Array.isArray(arr)) return [];
+        const valid = arr.filter(i => i && typeof i.name === 'string' && i.name.trim().length > 0);
+        const seen = new Set();
+        const result: GeneratedName[] = [];
+        for (const item of valid) {
+            const normalized = item.name.trim().toLowerCase();
+            if (!seen.has(normalized)) {
+                seen.add(normalized);
+                result.push({ ...item, name: item.name.trim() });
+            }
+        }
+        return result;
+    };
+
     // Load from AsyncStorage on mount
     useEffect(() => {
         AsyncStorage.getItem('klovana_shortlist').then(json => {
             if (json) {
                 try {
-                    setShortlist(JSON.parse(json));
+                    const parsed = JSON.parse(json);
+                    const cleaned = cleanShortlist(parsed);
+                    setShortlist(cleaned);
+                    // Just in case we cleaned up corruption, resave locally immediately:
+                    if (cleaned.length !== parsed.length) {
+                        AsyncStorage.setItem('klovana_shortlist', JSON.stringify(cleaned));
+                    }
                 } catch (e) {
                     console.error('Failed to parse shortlist', e);
                 }
@@ -70,9 +92,17 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
         if (!userId) return;
 
         // Fetch DB data immediately upon having a valid user
-        fetchShortlistFromDB(userId).then(dbData => {
+        Promise.all([
+            fetchShortlistFromDB(userId),
+            AsyncStorage.getItem('klovana_synced_names')
+        ]).then(([dbData, syncedStr]) => {
             const dbItems = dbData.names || [];
             const dbFolders = dbData.folders || [];
+
+            let syncedNames = new Set<string>();
+            try {
+                if (syncedStr) syncedNames = new Set(JSON.parse(syncedStr));
+            } catch (e) { }
 
             // Merge Folders
             if (dbFolders.length > 0) {
@@ -93,24 +123,39 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
                     const merged = [...dbItems];
                     const dbNames = new Set(dbItems.map(i => i.name));
 
-                    // Add any local items that aren't in the DB yet
-                    const uniqueLocal = prev.filter(i => !dbNames.has(i.name));
+                    // Add local items that aren't in the DB properly...
+                    // Check if they were already synced. If they were synced previously but are NOT in the DB now,
+                    // it means they were deleted remotely on another device. We should drop them.
+                    let uniqueLocal = prev.filter(i => !dbNames.has(i.name) && !syncedNames.has(i.name));
+
+                    // CACHE MIGRATION FIX: If the user has items in the DB, but their local device
+                    // has absolutely no sync tracking yet (`syncedStr` is null), their local cache is "legacy".
+                    // We must NOT upload legacy local items back to the DB, otherwise we will resurrect
+                    // items they previously deleted on another device!
+                    if (dbItems.length > 0 && !syncedStr) {
+                        uniqueLocal = [];
+                    }
+
                     merged.push(...uniqueLocal);
 
+                    // Clean the merged list to eliminate duplicates or empty entries
+                    const cleanedMerged = cleanShortlist(merged);
+
                     // Optimistically update DB with newly merged lists
-                    // (we assume folders might have also needed merging)
-                    saveShortlistToDB(userId, merged, folders);
+                    saveShortlistToDB(userId, cleanedMerged, folders);
 
                     // Overwrite local storage so it stays in sync
-                    AsyncStorage.setItem('klovana_shortlist', JSON.stringify(merged));
-                    return merged;
+                    AsyncStorage.setItem('klovana_shortlist', JSON.stringify(cleanedMerged));
+                    AsyncStorage.setItem('klovana_synced_names', JSON.stringify(cleanedMerged.map(i => i.name)));
+                    return cleanedMerged;
                 });
             } else if (shortlist.length > 0 || folders.length > 1) {
                 // No DB data but local data exists — push local up to DB
                 saveShortlistToDB(userId, shortlist, folders);
+                AsyncStorage.setItem('klovana_synced_names', JSON.stringify(shortlist.map(i => i.name)));
             }
         });
-    }, [userId]); // Removed dbLoaded so it runs dependably on login state change
+    }, [userId]);
 
     const saveShortlist = async (items: GeneratedName[]) => {
         setShortlist(items);
@@ -119,6 +164,7 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
         // Sync to Supabase if logged in
         if (userId) {
             saveShortlistToDB(userId, items, folders);
+            AsyncStorage.setItem('klovana_synced_names', JSON.stringify(items.map(i => i.name)));
         }
     };
 
@@ -158,7 +204,14 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
     };
 
     const getNamesByFolder = (folderId: string) => {
-        return shortlist.filter(item => (item.folderId || 'uncategorized') === folderId);
+        const validFolderIds = new Set(folders.map(f => f.id));
+        return shortlist.filter(item => {
+            let itemFolderId = item.folderId || 'uncategorized';
+            if (!validFolderIds.has(itemFolderId)) {
+                itemFolderId = 'uncategorized';
+            }
+            return itemFolderId === folderId;
+        });
     };
 
     const updateShortlistItem = (item: GeneratedName) => {

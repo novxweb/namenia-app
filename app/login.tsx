@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { View, Text, TextInput, Pressable, ActivityIndicator, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { supabase } from '@/lib/supabase';
+import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile';
 
 export default function LoginScreen() {
     const [email, setEmail] = useState('');
@@ -14,7 +15,16 @@ export default function LoginScreen() {
     const [errorMsg, setErrorMsg] = useState('');
     const [successMsg, setSuccessMsg] = useState('');
 
+    const turnstileRef = useRef<TurnstileInstance>(null);
+    const [turnstileToken, setTurnstileToken] = useState<string>('');
+
     const handleAuth = async () => {
+        // Enforce Turnstile Token on Web
+        if (Platform.OS === 'web' && process.env.EXPO_PUBLIC_TURNSTILE_SITE_KEY && !turnstileToken) {
+            setErrorMsg('Waiting for human verification. Please try again in a few seconds.');
+            return;
+        }
+
         setLoading(true);
         setErrorMsg('');
         setSuccessMsg('');
@@ -23,6 +33,7 @@ export default function LoginScreen() {
                 const { error } = await supabase.auth.signUp({
                     email,
                     password,
+                    options: { captchaToken: turnstileToken }
                 });
                 if (error) throw error;
                 setSuccessMsg('Check your email for the confirmation link!');
@@ -30,6 +41,7 @@ export default function LoginScreen() {
                 const { error } = await supabase.auth.signInWithPassword({
                     email,
                     password,
+                    options: { captchaToken: turnstileToken }
                 });
                 if (error) throw error;
                 router.replace('/(tabs)');
@@ -40,15 +52,20 @@ export default function LoginScreen() {
 
                 const { error } = await supabase.auth.resetPasswordForEmail(email, {
                     redirectTo: resetUrl,
+                    captchaToken: turnstileToken
                 });
                 if (error) throw error;
                 setSuccessMsg('Password reset instructions sent to your email.');
-                // Optionally clear the mode here or let them tap "Back to Sign in"
             }
         } catch (error: any) {
             setErrorMsg(error.message);
         } finally {
             setLoading(false);
+            // Reset the Turnstile token so a new one is generated for the next attempt
+            if (Platform.OS === 'web') {
+                turnstileRef.current?.reset();
+                setTurnstileToken('');
+            }
         }
     };
 
@@ -106,9 +123,19 @@ export default function LoginScreen() {
                                 </View>
                             )}
 
+                            {Platform.OS === 'web' && process.env.EXPO_PUBLIC_TURNSTILE_SITE_KEY && (
+                                <View className="items-center my-2">
+                                    <Turnstile
+                                        ref={turnstileRef}
+                                        siteKey={process.env.EXPO_PUBLIC_TURNSTILE_SITE_KEY}
+                                        onSuccess={setTurnstileToken}
+                                    />
+                                </View>
+                            )}
+
                             <Pressable
                                 onPress={handleAuth}
-                                disabled={loading || !email || (authMode !== 'forgot_password' && !password)}
+                                disabled={loading || !email || (authMode !== 'forgot_password' && !password) || (Platform.OS === 'web' && !turnstileToken)}
                                 className="bg-blue-600 active:bg-blue-700 disabled:opacity-50 p-4 rounded-lg items-center mt-2"
                             >
                                 {loading ? (

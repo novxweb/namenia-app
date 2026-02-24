@@ -25,6 +25,8 @@ Deno.serve(async (req: Request) => {
             );
         }
 
+
+
         const body = await req.json();
         const { messages, temperature, model } = body;
 

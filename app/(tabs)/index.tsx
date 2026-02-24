@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext, useRef } from 'react';
 import {
     View,
     Text,
@@ -24,7 +24,6 @@ import { useShortlist } from '@/core/contexts/ShortlistContext';
 import { AuthContext } from '@/core/contexts/AuthContextValue';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useContext } from 'react';
 
 export default function GeneratorScreen() {
     const { width } = useWindowDimensions();
@@ -53,6 +52,7 @@ export default function GeneratorScreen() {
     const BATCH_SIZE = 6;
     const [selectedLanguages, setSelectedLanguages] = useState<string[]>(['English']);
     const [autoGenerate, setAutoGenerate] = useState(false);
+
 
     // Effect 1: Read ?q= param from URL on mount and pre-fill keyword
     useEffect(() => {
@@ -132,6 +132,8 @@ export default function GeneratorScreen() {
             return;
         }
 
+
+
         setLoading(true);
         // If it's a new search, clear previous results immediately
         if (!append) {
@@ -144,7 +146,6 @@ export default function GeneratorScreen() {
 
         try {
             // Loop until we find enough names or hit max attempts
-            // We want at least 4 names per batch if possible
             while (newValidNames.length < 4 && attempts < MAX_ATTEMPTS) {
                 attempts++;
                 const isGettingDesperate = attempts > 1;
@@ -226,6 +227,8 @@ export default function GeneratorScreen() {
             <Text className="text-3xl font-bold text-slate-900 dark:text-white mb-6">
                 Name Generator
             </Text>
+
+
 
             {/* Toolbar / Results Header - Styled as a Card */}
             <View className="bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 mb-6 flex-row justify-between items-center">
