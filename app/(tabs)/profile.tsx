@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Pressable, ScrollView, SafeAreaView, ActivityIndicator, Alert, Image } from 'react-native';
+import { View, Text, TextInput, Pressable, ScrollView, SafeAreaView, ActivityIndicator, Alert, Image, Platform } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
 import { useAuth } from '@/core/hooks/useAuth';
 import { supabase } from '@/lib/supabase';
@@ -238,31 +238,49 @@ export default function ProfileScreen() {
                                     Once you delete your account, there is no going back. Please be certain.
                                 </Text>
                                 <Pressable
-                                    onPress={() => {
-                                        Alert.alert(
-                                            'Delete Account',
-                                            'Are you absolutely sure? This action cannot be undone and will permanently delete your account and all associated data.',
-                                            [
-                                                { text: 'Cancel', style: 'cancel' },
-                                                {
-                                                    text: 'Delete',
-                                                    style: 'destructive',
-                                                    onPress: async () => {
-                                                        try {
-                                                            setLoading(true);
-                                                            const { error } = await supabase.rpc('delete_user');
-                                                            if (error) throw error;
-                                                            Alert.alert('Deleted', 'Your account has been deleted.');
-                                                            signOut();
-                                                        } catch (e: any) {
-                                                            Alert.alert('Error Deleting Account', e.message);
-                                                        } finally {
-                                                            setLoading(false);
-                                                        }
-                                                    }
+                                    onPress={async () => {
+                                        const confirmText = 'Are you absolutely sure? This action cannot be undone and will permanently delete your account and all associated data.';
+
+                                        const proceedWithDelete = async () => {
+                                            try {
+                                                setLoading(true);
+                                                const { error } = await supabase.rpc('delete_user');
+                                                if (error) throw error;
+                                                if (Platform.OS === 'web') {
+                                                    window.alert('Your account has been deleted.');
+                                                } else {
+                                                    Alert.alert('Deleted', 'Your account has been deleted.');
                                                 }
-                                            ]
-                                        );
+                                                signOut();
+                                            } catch (e: any) {
+                                                if (Platform.OS === 'web') {
+                                                    window.alert('Error Deleting Account: ' + e.message);
+                                                } else {
+                                                    Alert.alert('Error Deleting Account', e.message);
+                                                }
+                                            } finally {
+                                                setLoading(false);
+                                            }
+                                        };
+
+                                        if (Platform.OS === 'web') {
+                                            if (window.confirm(confirmText)) {
+                                                proceedWithDelete();
+                                            }
+                                        } else {
+                                            Alert.alert(
+                                                'Delete Account',
+                                                confirmText,
+                                                [
+                                                    { text: 'Cancel', style: 'cancel' },
+                                                    {
+                                                        text: 'Delete',
+                                                        style: 'destructive',
+                                                        onPress: proceedWithDelete
+                                                    }
+                                                ]
+                                            );
+                                        }
                                     }}
                                     disabled={loading}
                                     className="bg-red-600 active:bg-red-700 p-4 rounded-lg items-center"
