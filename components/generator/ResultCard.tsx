@@ -140,6 +140,15 @@ export function ResultCard({ result, index }: ResultCardProps) {
 
                         {/* Socials & Legal Row */}
 
+                        {/* AI Rationale */}
+                        {result.rationale && (
+                            <View className="mt-2 bg-slate-50 dark:bg-slate-900/50 p-3 rounded-lg border border-slate-100 dark:border-slate-800">
+                                <Text className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed italic">
+                                    {result.rationale}
+                                </Text>
+                            </View>
+                        )}
+
                     </View>
                 </View>
 
