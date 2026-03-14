@@ -47,7 +47,7 @@ export default function LoginScreen() {
                     email,
                     password,
                     options: {
-                        captchaToken: turnstileToken,
+                        ...(turnstileToken ? { captchaToken: turnstileToken } : {}),
                         emailRedirectTo: redirectUrl,
                         data: {
                             full_name: name.trim()
@@ -60,7 +60,7 @@ export default function LoginScreen() {
                 const { error } = await supabase.auth.signInWithPassword({
                     email,
                     password,
-                    options: { captchaToken: turnstileToken }
+                    ...(turnstileToken ? { options: { captchaToken: turnstileToken } } : {})
                 });
                 if (error) throw error;
                 router.replace('/(tabs)');
@@ -71,7 +71,7 @@ export default function LoginScreen() {
 
                 const { error } = await supabase.auth.resetPasswordForEmail(email, {
                     redirectTo: resetUrl,
-                    captchaToken: turnstileToken
+                    ...(turnstileToken ? { captchaToken: turnstileToken } : {})
                 });
                 if (error) throw error;
                 setSuccessMsg('Password reset instructions sent to your email.');

@@ -9,7 +9,8 @@ import { APP_VERSION } from '@/core/config/version';
 
 import { useTheme, ThemeProvider } from '@/core/contexts/ThemeContext';
 import { AuthProvider } from '@/core/contexts/AuthContext';
-import { useEffect } from 'react';
+import { ShortlistProvider } from '@/core/contexts/ShortlistContext';
+import React, { useEffect } from 'react';
 import { trackPageView } from '@/lib/analytics';
 
 // Wrapper to consume ThemeContext for Navigation Theme
@@ -36,8 +37,6 @@ function RootLayoutContent() {
         </NavigationThemeProvider>
     );
 }
-
-import { ShortlistProvider } from '@/core/contexts/ShortlistContext';
 
 export default function RootLayout() {
     return (

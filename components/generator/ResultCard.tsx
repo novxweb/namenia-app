@@ -85,7 +85,7 @@ export function ResultCard({ result, index }: ResultCardProps) {
 
     return (
         <>
-            <View className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm h-full flex-col justify-between hover:shadow-md transition-shadow">
+            <View className="bg-white dark:bg-slate-800 p-6 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm flex-col justify-between hover:shadow-md transition-shadow">
 
                 <View>
                     {/* Header */}
