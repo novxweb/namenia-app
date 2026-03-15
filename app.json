@@ -21,7 +21,11 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.positri.namenia"
+      "bundleIdentifier": "com.positri.namenia",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
@@ -42,6 +46,12 @@
       "expo-router",
       "expo-web-browser",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "b2cbdc0c-29ba-48fd-9b31-487fe034ba88"
+      }
+    }
   }
 }
