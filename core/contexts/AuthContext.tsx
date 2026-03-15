@@ -5,13 +5,14 @@ import { AuthContext } from './AuthContextValue';
 import { router } from 'expo-router';
 import { Alert, Platform } from 'react-native';
 import * as Linking from 'expo-linking';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [session, setSession] = useState<Session | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Web-specific: Check URL immediately for recovery flow
+        // Web-specific: Check URL immediately for recovery or signup confirmation flow
         if (Platform.OS === 'web' && typeof window !== 'undefined') {
             const hash = window.location.hash;
             const search = window.location.search;
@@ -20,6 +21,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 (search && search.includes('type=recovery'))
             ) {
                 setTimeout(() => router.replace('/update-password'), 500);
+            } else if (
+                (hash && hash.includes('type=signup')) ||
+                (search && search.includes('type=signup'))
+            ) {
+                // Email confirmed via web - will be handled by onAuthStateChange below
+                setTimeout(() => {
+                    Alert.alert('Success', 'Your email has been verified and you are now logged in.');
+                    router.replace('/(tabs)');
+                }, 500);
             }
         }
 
@@ -40,13 +50,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
                 router.replace('/update-password');
             }
 
-            if (event === 'SIGNED_IN' || event === 'PASSWORD_RECOVERY') {
+            if (event === 'SIGNED_IN') {
                 const url = await Linking.getInitialURL();
                 if (url) {
                     if (url.includes('type=recovery')) {
                         router.replace('/update-password');
-                    } else if (event === 'SIGNED_IN' && (url.includes('type=signup') || url.includes('type=invite') || url.includes('type=magiclink'))) {
-                        Alert.alert('Success', 'Your email has been verified and you are now logged in.');
+                    } else if (url.includes('type=signup') || url.includes('type=invite') || url.includes('type=magiclink')) {
+                        Alert.alert('Welcome!', 'Your email has been verified and you are now logged in.');
+                        router.replace('/(tabs)');
                     }
                 }
             }
@@ -56,6 +67,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }, []);
 
     const signOut = async () => {
+        // Clear local shortlist data so next login starts fresh from DB
+        await AsyncStorage.multiRemove([
+            'namenia_shortlist',
+            'namenia_folders',
+            'namenia_synced_names',
+            'pendingGenerationState',
+            'pendingKeyword'
+        ]);
         await supabase.auth.signOut();
     };
 

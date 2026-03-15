@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { supabase } from '@/lib/supabase';
 import { Turnstile, TurnstileInstance } from '@marsidev/react-turnstile';
+import * as Linking from 'expo-linking';
 
 export default function LoginScreen() {
     const [email, setEmail] = useState('');
@@ -41,9 +42,9 @@ export default function LoginScreen() {
 
                 const redirectUrl = Platform.OS === 'web'
                     ? (window.location.hostname === 'localhost' ? `${window.location.origin}/` : `${window.location.origin}/app/`)
-                    : undefined;
+                    : Linking.createURL('/');
 
-                const { error } = await supabase.auth.signUp({
+                const { data, error } = await supabase.auth.signUp({
                     email,
                     password,
                     options: {
@@ -55,7 +56,12 @@ export default function LoginScreen() {
                     }
                 });
                 if (error) throw error;
-                setSuccessMsg('Check your email for the confirmation link!');
+                // If Supabase returns a session, user is auto-confirmed — go straight in
+                if (data.session) {
+                    router.replace('/(tabs)');
+                } else {
+                    setSuccessMsg('Check your email for the confirmation link!');
+                }
             } else if (authMode === 'signin') {
                 const { error } = await supabase.auth.signInWithPassword({
                     email,
@@ -90,6 +96,17 @@ export default function LoginScreen() {
 
     return (
         <SafeAreaView className="flex-1 bg-slate-50 dark:bg-slate-900">
+            {/* Close / Back Button */}
+            <View className="flex-row justify-end px-4 pt-2">
+                <Pressable
+                    onPress={() => router.canGoBack() ? router.back() : router.replace('/(tabs)')}
+                    className="p-2 rounded-full bg-slate-100 dark:bg-slate-800 active:bg-slate-200 dark:active:bg-slate-700"
+                    hitSlop={8}
+                >
+                    <Text className="text-slate-500 dark:text-slate-400 text-lg font-bold">✕</Text>
+                </Pressable>
+            </View>
+
             <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : 'height'} className="flex-1">
                 <ScrollView contentContainerClassName="flex-grow justify-center p-6">
                     <View className="w-full max-w-md mx-auto gap-6">

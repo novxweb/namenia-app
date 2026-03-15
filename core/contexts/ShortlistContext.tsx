@@ -58,7 +58,7 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
 
     // Load from AsyncStorage on mount
     useEffect(() => {
-        AsyncStorage.getItem('klovana_shortlist').then(json => {
+        AsyncStorage.getItem('namenia_shortlist').then(json => {
             if (json) {
                 try {
                     const parsed = JSON.parse(json);
@@ -66,7 +66,7 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
                     setShortlist(cleaned);
                     // Just in case we cleaned up corruption, resave locally immediately:
                     if (cleaned.length !== parsed.length) {
-                        AsyncStorage.setItem('klovana_shortlist', JSON.stringify(cleaned));
+                        AsyncStorage.setItem('namenia_shortlist', JSON.stringify(cleaned));
                     }
                 } catch (e) {
                     console.error('Failed to parse shortlist', e);
@@ -74,7 +74,7 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
             }
         });
 
-        AsyncStorage.getItem('klovana_folders').then(json => {
+        AsyncStorage.getItem('namenia_folders').then(json => {
             if (json) {
                 try {
                     setFolders(JSON.parse(json));
@@ -94,7 +94,7 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
         // Fetch DB data immediately upon having a valid user
         Promise.all([
             fetchShortlistFromDB(userId),
-            AsyncStorage.getItem('klovana_synced_names')
+            AsyncStorage.getItem('namenia_synced_names')
         ]).then(([dbData, syncedStr]) => {
             const dbItems = dbData.names || [];
             const dbFolders = dbData.folders || [];
@@ -111,7 +111,7 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
                     const dbFolderIds = new Set(dbFolders.map(f => f.id));
                     const uniqueLocalFolders = prev.filter(f => !dbFolderIds.has(f.id));
                     mergedFolders.push(...uniqueLocalFolders);
-                    AsyncStorage.setItem('klovana_folders', JSON.stringify(mergedFolders));
+                    AsyncStorage.setItem('namenia_folders', JSON.stringify(mergedFolders));
                     return mergedFolders;
                 });
             }
@@ -145,32 +145,32 @@ export function ShortlistProvider({ children }: { children: ReactNode }) {
                     saveShortlistToDB(userId, cleanedMerged, folders);
 
                     // Overwrite local storage so it stays in sync
-                    AsyncStorage.setItem('klovana_shortlist', JSON.stringify(cleanedMerged));
-                    AsyncStorage.setItem('klovana_synced_names', JSON.stringify(cleanedMerged.map(i => i.name)));
+                    AsyncStorage.setItem('namenia_shortlist', JSON.stringify(cleanedMerged));
+                    AsyncStorage.setItem('namenia_synced_names', JSON.stringify(cleanedMerged.map(i => i.name)));
                     return cleanedMerged;
                 });
             } else if (shortlist.length > 0 || folders.length > 1) {
                 // No DB data but local data exists — push local up to DB
                 saveShortlistToDB(userId, shortlist, folders);
-                AsyncStorage.setItem('klovana_synced_names', JSON.stringify(shortlist.map(i => i.name)));
+                AsyncStorage.setItem('namenia_synced_names', JSON.stringify(shortlist.map(i => i.name)));
             }
         });
     }, [userId]);
 
     const saveShortlist = async (items: GeneratedName[]) => {
         setShortlist(items);
-        await AsyncStorage.setItem('klovana_shortlist', JSON.stringify(items));
+        await AsyncStorage.setItem('namenia_shortlist', JSON.stringify(items));
 
         // Sync to Supabase if logged in
         if (userId) {
             saveShortlistToDB(userId, items, folders);
-            AsyncStorage.setItem('klovana_synced_names', JSON.stringify(items.map(i => i.name)));
+            AsyncStorage.setItem('namenia_synced_names', JSON.stringify(items.map(i => i.name)));
         }
     };
 
     const saveFolders = async (folderList: Folder[]) => {
         setFolders(folderList);
-        await AsyncStorage.setItem('klovana_folders', JSON.stringify(folderList));
+        await AsyncStorage.setItem('namenia_folders', JSON.stringify(folderList));
 
         if (userId) {
             saveShortlistToDB(userId, shortlist, folderList);
