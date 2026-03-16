@@ -2,7 +2,7 @@
 export type NameStyle = 'auto' | 'brandable' | 'alternate' | 'compound' | 'real_word' | 'short';
 export type RandomnessLevel = 'low' | 'medium' | 'high';
 
-import { AvailabilityResult } from './availability';
+import type { AvailabilityResult } from './availability';
 
 export interface GeneratedName {
   name: string;

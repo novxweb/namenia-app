@@ -1,6 +1,26 @@
 
 export const INDUSTRIES = [
-    'Select industry', 'Tech & SaaS', 'Fashion', 'Health', 'Finance', 'Agency', 'E-commerce'
+    'Select industry', 
+    'Technology & SaaS', 
+    'E-commerce & Retail',
+    'Health & Wellness',
+    'Finance & Fintech',
+    'Marketing & Agency',
+    'Real Estate & Proptech',
+    'Travel & Hospitality',
+    'Food & Beverage',
+    'Education & Edtech',
+    'Gaming & Esports',
+    'Fitness & Sports',
+    'Web3 & Crypto',
+    'AI & Data',
+    'Green Tech & Sustainability',
+    'B2B Enterprise & Workflow',
+    'Media & Entertainment',
+    'Beauty & Personal Care',
+    'Logistics & Supply Chain',
+    'Legal & HR Tech',
+    'Home Services & Trades'
 ];
 
 export const VIBES = [

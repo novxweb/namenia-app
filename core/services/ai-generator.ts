@@ -121,12 +121,16 @@ export async function generateNamesWithAI(input: AIStateInput): Promise<Generate
     const userPrompt = buildUserPrompt(keyword, style, randomness, industry, description, country, availabilityFocus ?? false);
 
     try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s timeout for LLM
+
         const response = await fetch(EDGE_FUNCTION_URL, {
             method: "POST",
             headers: {
                 "Authorization": `Bearer ${SUPABASE_ANON_KEY}`,
                 "Content-Type": "application/json"
             },
+            signal: controller.signal,
             body: JSON.stringify({
                 messages: [
                     { role: "system", content: NAME_STRATEGY_SYSTEM_PROMPT },
@@ -136,6 +140,8 @@ export async function generateNamesWithAI(input: AIStateInput): Promise<Generate
                 model: "meta-llama/llama-3-70b-instruct"
             })
         });
+
+        clearTimeout(timeoutId);
 
         if (!response.ok) {
             throw new Error(`Edge function error: ${response.status} ${response.statusText}`);

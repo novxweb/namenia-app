@@ -1,0 +1,1321 @@
+{
+  "totalChecksMade": 967,
+  "catalog": {
+    "Technology & SaaS": [
+      {
+        "name": "Startezo",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Techvixo",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Startixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Startixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Celerixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Pivotalyx",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Startixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Veloctix",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Techzonea",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Celerixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Pivotalyx",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Techvolo",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Celerixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Teknixia",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Startixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Eonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Celerixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Pivotalix",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Evoixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "E-commerce & Retail": [
+      {
+        "name": "Eonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Velociro",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Komaxio",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Ekomera",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Ekonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Komaxera",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Ekomexa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Velokera",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Eonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Velocixo",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Celerixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Eonvexa",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Ecommixy",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Eonvora",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Eonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Ezoraio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Eonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Kommerio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Komerox",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Velorza",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Eonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Eonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Komodoa",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Eonixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "Health & Wellness": [
+      {
+        "name": "Euphorixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Sanaxio",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Sanovaio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Corioza",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Sanoixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Sanoviax",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Sanovaro",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Saluxio",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Saluxio",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "Finance & Fintech": [
+      {
+        "name": "Finnixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Pecunixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Finuvoi",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Finixaio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Pecunixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Pecunixaio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Finixaio",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Finzerao",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Finvaxo",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Finzephyr",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      }
+    ],
+    "Marketing & Agency": [],
+    "Real Estate & Proptech": [],
+    "Travel & Hospitality": [],
+    "Food & Beverage": [],
+    "Education & Edtech": [],
+    "Gaming & Esports": [],
+    "Fitness & Sports": [],
+    "Web3 & Crypto": [
+      {
+        "name": "Webvecta",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Webcrypta",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Weborva",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "AI & Data": [
+      {
+        "name": "Aximaro",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Inteluxa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Cerebroi",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      }
+    ],
+    "Green Tech & Sustainability": [],
+    "B2B Enterprise & Workflow": [
+      {
+        "name": "Celerixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Bizinu",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "B2Velo",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Bizkiru",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "B2Voxa",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Startixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Ventuxe",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Biznixio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Biznovio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Bizixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Pivvora",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Vitrioa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Pivotoa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Celerixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "Media & Entertainment": [
+      {
+        "name": "Mediixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Mediixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Mediixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Mediavra",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Vibrizi",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Mediokra",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Mediivox",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Mediixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Mediavoix",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Videxar",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Mediuxa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "Beauty & Personal Care": [
+      {
+        "name": "Pulcria",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Venusari",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Pulchriq",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Pulchrixe",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Pulchrio",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Aesthixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Beautrine",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Aurorixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Pulcrae",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Vitaezza",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Kaloxia",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Pulchrio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Kaleidoa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Cutivora",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Pulcria",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Kaleidoa",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Velurax",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Euphorixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Kalosera",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Pulchrixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Elysixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Kaleidorix",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Blezia",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "Logistics & Supply Chain": [
+      {
+        "name": "Movirix",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Logizera",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Logirixi",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Logixea",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Veloixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Logimio",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Cargixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Cargiton",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Cargiven",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Logirax",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Logizel",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Veloximo",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Logirio",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Logixar",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "Legal & HR Tech": [
+      {
+        "name": "Vestixo",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Justixio",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Legidar",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Legivora",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Justixar",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Legizor",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Legivaro",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Legixio",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Legixio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Lexirio",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Legixir",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Lawrior",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Jurimix",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Legiflux",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Legaizo",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Legixio",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Juriqa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Jurivita",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "Home Services & Trades": [
+      {
+        "name": "Abodixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Nestixo",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Abodixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Startixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Homixio",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Kinetixi",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Nexthabi",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Homizan",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Domiria",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Homizex",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Nexihom",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Domifera",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Homiax",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Domicxi",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Homizex",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Domicera",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Habitixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Residixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ]
+  },
+  "completedCombinations": [
+    "Technology & SaaS|auto",
+    "Technology & SaaS|brandable",
+    "Technology & SaaS|compound",
+    "Technology & SaaS|real_word",
+    "Technology & SaaS|alternate",
+    "Technology & SaaS|short",
+    "E-commerce & Retail|auto",
+    "E-commerce & Retail|brandable",
+    "E-commerce & Retail|compound",
+    "E-commerce & Retail|real_word",
+    "E-commerce & Retail|alternate",
+    "E-commerce & Retail|short",
+    "Health & Wellness|auto",
+    "Health & Wellness|brandable",
+    "Health & Wellness|compound",
+    "Health & Wellness|real_word",
+    "Health & Wellness|alternate",
+    "Health & Wellness|short",
+    "Finance & Fintech|auto",
+    "Finance & Fintech|brandable",
+    "Finance & Fintech|compound",
+    "Finance & Fintech|real_word",
+    "Finance & Fintech|alternate",
+    "Finance & Fintech|short",
+    "Marketing & Agency|auto",
+    "Marketing & Agency|brandable",
+    "Marketing & Agency|compound",
+    "Marketing & Agency|real_word",
+    "Marketing & Agency|alternate",
+    "Marketing & Agency|short",
+    "Real Estate & Proptech|auto",
+    "Real Estate & Proptech|brandable",
+    "Real Estate & Proptech|compound",
+    "Real Estate & Proptech|real_word",
+    "Real Estate & Proptech|alternate",
+    "Real Estate & Proptech|short",
+    "Travel & Hospitality|auto",
+    "Travel & Hospitality|brandable",
+    "Travel & Hospitality|compound",
+    "Travel & Hospitality|real_word",
+    "Travel & Hospitality|alternate",
+    "Travel & Hospitality|short",
+    "Food & Beverage|auto",
+    "Food & Beverage|brandable",
+    "Food & Beverage|compound",
+    "Food & Beverage|real_word",
+    "Food & Beverage|alternate",
+    "Food & Beverage|short",
+    "Education & Edtech|auto",
+    "Education & Edtech|brandable",
+    "Education & Edtech|compound",
+    "Education & Edtech|real_word",
+    "Education & Edtech|alternate",
+    "Education & Edtech|short",
+    "Gaming & Esports|auto",
+    "Gaming & Esports|brandable",
+    "Gaming & Esports|compound",
+    "Gaming & Esports|real_word",
+    "Gaming & Esports|alternate",
+    "Gaming & Esports|short",
+    "Fitness & Sports|auto",
+    "Fitness & Sports|brandable",
+    "Fitness & Sports|compound",
+    "Fitness & Sports|real_word",
+    "Fitness & Sports|alternate",
+    "Fitness & Sports|short",
+    "Web3 & Crypto|auto",
+    "Web3 & Crypto|brandable",
+    "Web3 & Crypto|compound",
+    "Web3 & Crypto|real_word",
+    "Web3 & Crypto|alternate",
+    "Web3 & Crypto|short",
+    "AI & Data|auto",
+    "AI & Data|brandable",
+    "AI & Data|compound",
+    "AI & Data|real_word",
+    "AI & Data|alternate",
+    "AI & Data|short",
+    "Green Tech & Sustainability|auto",
+    "Green Tech & Sustainability|brandable",
+    "Green Tech & Sustainability|compound",
+    "Green Tech & Sustainability|real_word",
+    "Green Tech & Sustainability|alternate",
+    "Green Tech & Sustainability|short",
+    "B2B Enterprise & Workflow|auto",
+    "B2B Enterprise & Workflow|brandable",
+    "B2B Enterprise & Workflow|compound",
+    "B2B Enterprise & Workflow|real_word",
+    "B2B Enterprise & Workflow|alternate",
+    "B2B Enterprise & Workflow|short",
+    "Media & Entertainment|auto",
+    "Media & Entertainment|brandable",
+    "Media & Entertainment|compound",
+    "Media & Entertainment|real_word",
+    "Media & Entertainment|alternate",
+    "Media & Entertainment|short",
+    "Beauty & Personal Care|auto",
+    "Beauty & Personal Care|brandable",
+    "Beauty & Personal Care|compound",
+    "Beauty & Personal Care|real_word",
+    "Beauty & Personal Care|alternate",
+    "Beauty & Personal Care|short",
+    "Logistics & Supply Chain|auto",
+    "Logistics & Supply Chain|brandable",
+    "Logistics & Supply Chain|compound",
+    "Logistics & Supply Chain|real_word",
+    "Logistics & Supply Chain|alternate",
+    "Logistics & Supply Chain|short",
+    "Legal & HR Tech|auto",
+    "Legal & HR Tech|brandable",
+    "Legal & HR Tech|compound",
+    "Legal & HR Tech|real_word",
+    "Legal & HR Tech|alternate",
+    "Legal & HR Tech|short",
+    "Home Services & Trades|auto",
+    "Home Services & Trades|brandable",
+    "Home Services & Trades|compound",
+    "Home Services & Trades|real_word",
+    "Home Services & Trades|alternate",
+    "Home Services & Trades|short"
+  ]
+}
