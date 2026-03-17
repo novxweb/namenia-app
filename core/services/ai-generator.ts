@@ -36,12 +36,12 @@ You must evaluate EVERY generated name against this strict rubric before outputt
 - **Do NOT** use boring generic AI names (e.g., "TechSolutions", "HealthHub").
 - **DO** generate FANCIFUL and ARBITRARY names. Inject heavy sound symbolism.
 - Expand your vocabulary. Use Latin roots, abstract markers (x, z, q, v), and rhythmic coined syllables.
-- You must provide a "rationale" string for EACH name. This rationale MUST explicitly mention exactly how the name satisfies the 6 dimensions of the framework (e.g., mention Phonetic Symbolism, Typographic Symmetry, etc.).
+- You must provide a "rationale" string for EACH name. This rationale MUST be concise (max 2 sentences) and explicitly mention exactly how the name satisfies the 6 dimensions of the framework (e.g., mention Phonetic Symbolism, Typographic Symmetry, etc.).
 - Never explain your process, just return the JSON.
 `;
 
 const buildUserPrompt = (
-    keyword: string,
+    keyword: string | undefined,
     style: NameStyle,
     randomness: RandomnessLevel,
     industry: string | undefined,
@@ -52,17 +52,21 @@ const buildUserPrompt = (
 ACT AS THE STRATEGIST. Execute the Naming Brief with the following parameters:
 
 **STEP 1 — SEMANTIC ANALYSIS (do this mentally before generating)**:
-Keyword: "${keyword}"
+${keyword ? `Keyword: "${keyword}"
 - What is the core meaning/function this keyword implies?
 - What emotions, sensations, or associations does it trigger?
 - What metaphors or adjacent concepts relate to it?
 - What phonetic qualities does it have (hard/soft, fast/slow)?
-Use this analysis to ensure every name you generate has a genuine connection to the keyword.
+Use this analysis to ensure every name you generate has a genuine connection to the keyword.` : 
+`- What are the key concepts and associations related to the given industry and target vibe?
+- What metaphors or adjacent concepts relate to them?
+- What phonetic qualities (hard/soft, fast/slow) best represent the target vibe?
+Use this analysis to ensure every name you generate has a genuine connection to the requested industry and feeling.`}
 
 **STEP 2 — NAMING BRIEF**:
 
 **PROJECT SCOPE**:
-- **Core Keyword/Seed**: "${keyword}"
+${keyword ? `- **Core Keyword/Seed**: "${keyword}"` : `- **Core Focus**: Must strongly align with Industry and Target Vibe`}
 - **Industry Context**: ${industry || 'General/Technology'}
 - **Target Market**: ${country || 'Global'}
 
@@ -76,15 +80,15 @@ ${availabilityFocus ? `
 Most common words and simple compounds are taken. You MUST generate names highly likely to be available.
 
 REQUIRED STRATEGIES:
-1. **Keyword-Rooted Neologisms**: Blend the keyword's meaning with uncommon word parts (e.g., if keyword is "flow": "Flowvex", "Fluvari", "Kineflow").
+1. **Keyword-Rooted Neologisms**: Blend the core concepts with uncommon word parts${keyword ? ` (e.g., if keyword is "flow": "Flowvex", "Fluvari", "Kineflow")` : ''}.
 2. **Unique Suffixes**: Use endings like -io, -ia, -ex, -or, -ax, -ix, -zen, -ara, -era, -ify.
-3. **Rhythmic Coinage**: Completely invented words that STILL feel semantically connected to the keyword through sound or association.
+3. **Rhythmic Coinage**: Completely invented words that STILL feel semantically connected to the core concepts through sound or association.
 4. **Avoid single dictionary words** — virtually all are registered.
-5. **No generic prefix+suffix combos** like "Xperia", "Nexio", "Zenovex" that have no keyword connection.
+5. **No generic prefix+suffix combos** like "Xperia", "Nexio", "Zenovex" that have no thematic connection.
 ` : ''}
 
 **STEP 3 — GENERATE**:
-Generate 15-20 high-quality brand names using the Advanced Naming Framework. ONLY include names scoring 80 or above out of 100.
+Generate 10-12 high-quality brand names using the Advanced Naming Framework. ONLY include names scoring 80 or above out of 100.
 For each name, explicitly write a comprehensive "rationale" demonstrating how it scores against:
 1. Legal Defendability (Fanciful vs Arbitrary)
 2. Phonetic Symbolism (Bouba/Kiki, consonant voicing)
@@ -101,7 +105,7 @@ Return ONLY valid JSON, no other text:
 `;
 
 export interface AIStateInput {
-    keyword: string;
+    keyword?: string;
     style: NameStyle;
     randomness: RandomnessLevel;
     industry?: string;
@@ -118,11 +122,13 @@ export async function generateNamesWithAI(input: AIStateInput): Promise<Generate
 
     const { keyword, style, randomness, industry, description, country, availabilityFocus } = input;
 
-    const userPrompt = buildUserPrompt(keyword, style, randomness, industry, description, country, availabilityFocus ?? false);
+    const userPrompt = buildUserPrompt(keyword || '', style, randomness, industry, description, country, availabilityFocus ?? false);
 
     try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s timeout for LLM
+        const timeoutId = setTimeout(() => controller.abort("TIMEOUT"), 180000); // 180s timeout for LLM (increased for batching)
+        
+        const startTime = Date.now();
 
         const response = await fetch(EDGE_FUNCTION_URL, {
             method: "POST",
@@ -142,6 +148,8 @@ export async function generateNamesWithAI(input: AIStateInput): Promise<Generate
         });
 
         clearTimeout(timeoutId);
+        const duration = (Date.now() - startTime) / 1000;
+        console.log(`[AI] Request completed in ${duration.toFixed(2)}s`);
 
         if (!response.ok) {
             throw new Error(`Edge function error: ${response.status} ${response.statusText}`);
@@ -189,8 +197,8 @@ export async function generateNamesWithAI(input: AIStateInput): Promise<Generate
 
 // Simple procedural generator for fallback — delegates to the improved generator
 // which handles multi-word keyword extraction and quality filtering
-function generateLocalNames(keyword: string, style: NameStyle): GeneratedName[] {
-    return generateBrandNames(keyword, style, 'medium', false);
+function generateLocalNames(keyword: string | undefined, style: NameStyle): GeneratedName[] {
+    return generateBrandNames(keyword || 'brand', style, 'medium', false);
 }
 
 // Helper to map fancy AI conceptual styles back to our simple UI styles for filtering/icons

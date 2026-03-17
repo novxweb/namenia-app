@@ -256,11 +256,11 @@ export function Sidebar({
                 <View className="mt-8 mb-4">
                     <Pressable
                         onPress={onGenerate}
-                        disabled={loading || !keyword.trim()}
-                        style={{ cursor: loading || !keyword.trim() ? 'not-allowed' : 'pointer' } as any}
+                        disabled={loading}
+                        style={{ cursor: loading ? 'not-allowed' : 'pointer' } as any}
                         className={cn(
                             "bg-[#00cba0] active:bg-[#00b38e] py-4 rounded-xl items-center shadow-lg shadow-emerald-500/20 active:scale-[0.99] transition-all flex-row justify-center gap-2",
-                            (loading || !keyword.trim()) && "opacity-80"
+                            loading && "opacity-80"
                         )}
                     >
                         <Sparkles size={20} color="white" />

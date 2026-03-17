@@ -1,219 +1,86 @@
 {
-  "totalChecksMade": 805,
+  "totalChecksMade": 846,
   "catalog": {
     "Technology & SaaS": [
+      {
+        "name": "Magntechnology",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Staala",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Startupova",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Stairu",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Audstartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Solstartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Startixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
       {
         "name": "Teknixa",
         "tlds": [
           "com"
         ],
-        "style": "auto"
+        "style": "brandable"
       },
       {
-        "name": "Spectriv",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Celerixa",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Nexorgen",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Tecuti",
+        "name": "Startezo",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Technologyora",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Technologyara",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Staazu",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Stauvu",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Staona",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Teceru",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Startupcrest",
+        "name": "Kinetechnology",
         "tlds": [
           "com"
         ],
         "style": "compound"
       },
       {
-        "name": "Startupsparc",
+        "name": "Velostartup",
         "tlds": [
           "com"
         ],
         "style": "compound"
-      },
-      {
-        "name": "Kinestartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "compound"
-      },
-      {
-        "name": "Lumistartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "compound"
-      },
-      {
-        "name": "Daemonstartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Qubitstartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Startupaero",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Startixa",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Velocizo",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Startixa",
-        "tlds": [
-          "com"
-        ],
-        "style": "short"
-      },
-      {
-        "name": "Tekuora",
-        "tlds": [
-          "com"
-        ],
-        "style": "short"
-      },
-      {
-        "name": "Startechi",
-        "tlds": [
-          "com"
-        ],
-        "style": "short"
       }
     ],
     "E-commerce & Retail": [
-      {
-        "name": "Startupiva",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Ecommerceis",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Ecoelu",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Staizo",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Staexi",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Zeniecom",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Staaxu",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
       {
         "name": "Ecommerceora",
         "tlds": [
@@ -222,35 +89,63 @@
         "style": "auto"
       },
       {
-        "name": "Ecoazo",
+        "name": "Ecoumo",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Starpris",
+        "name": "Ecommerceera",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Evolixo",
+        "name": "Starnexu",
         "tlds": [
           "com"
         ],
-        "style": "brandable"
+        "style": "auto"
       },
       {
-        "name": "Komodoa",
+        "name": "Staoxo",
         "tlds": [
           "com"
         ],
-        "style": "brandable"
+        "style": "auto"
       },
       {
-        "name": "Ekomera",
+        "name": "Staolu",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Staoxe",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Startupara",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Orbiecom",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Mercixa",
         "tlds": [
           "com"
         ],
@@ -261,35 +156,14 @@
         "tlds": [
           "com"
         ],
-        "style": "compound"
+        "style": "brandable"
       },
       {
-        "name": "Tradezza",
+        "name": "Veloecommerce",
         "tlds": [
           "com"
         ],
         "style": "compound"
-      },
-      {
-        "name": "Aurorastartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Startupiodine",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Aeroecommerce",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
       },
       {
         "name": "Ekommerke",
@@ -301,21 +175,42 @@
     ],
     "Health & Wellness": [
       {
-        "name": "Starnexu",
+        "name": "Healciph",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Starorbi",
+        "name": "Startupuna",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Stauli",
+        "name": "Staexa",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Zeniheal",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Starciph",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Phasheal",
         "tlds": [
           "com"
         ],
@@ -329,35 +224,35 @@
         "style": "brandable"
       },
       {
-        "name": "Phasheal",
+        "name": "Healquan",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Staito",
+        "name": "Stauku",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Starzeni",
+        "name": "Staoka",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Staeni",
+        "name": "Starciph",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Visstartup",
+        "name": "Startupora",
         "tlds": [
           "com"
         ],
@@ -371,13 +266,6 @@
         "style": "compound"
       },
       {
-        "name": "Dynastartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "compound"
-      },
-      {
         "name": "Staheal",
         "tlds": [
           "com"
@@ -385,14 +273,35 @@
         "style": "real_word"
       },
       {
-        "name": "Startuplunar",
+        "name": "Startupaero",
         "tlds": [
           "com"
         ],
         "style": "real_word"
       },
       {
-        "name": "Staheal",
+        "name": "Helixstartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Kinetixi",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Vibroxi",
+        "tlds": [
+          "com"
+        ],
+        "style": "alternate"
+      },
+      {
+        "name": "Sensusia",
         "tlds": [
           "com"
         ],
@@ -408,175 +317,26 @@
     ],
     "Finance & Fintech": [
       {
-        "name": "Finanexu",
+        "name": "Financeova",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Finaciph",
+        "name": "Jubfinance",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Staanu",
+        "name": "Staano",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
-      {
-        "name": "Financeon",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Staona",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Starnexu",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Staeto",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Startupiva",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Starphas",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Cogstartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Verstartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Staoli",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Phasstar",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Startupcrest",
-        "tlds": [
-          "com"
-        ],
-        "style": "compound"
-      },
-      {
-        "name": "Startupaero",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Kalyfinance",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Financeoptic",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Daemonstartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Startupqubit",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Fluentrio",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Finpexa",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Finoria",
-        "tlds": [
-          "com"
-        ],
-        "style": "short"
-      },
-      {
-        "name": "Finixaio",
-        "tlds": [
-          "com"
-        ],
-        "style": "short"
-      },
-      {
-        "name": "Finizmo",
-        "tlds": [
-          "com"
-        ],
-        "style": "short"
-      }
-    ],
-    "Marketing & Agency": [
       {
         "name": "Startupuna",
         "tlds": [
@@ -585,247 +345,114 @@
         "style": "auto"
       },
       {
-        "name": "Staumi",
+        "name": "Startupora",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Staexe",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Starciph",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Financeova",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Staoxo",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Finuxi",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      }
+    ],
+    "Marketing & Agency": [
+      {
+        "name": "Marketingiva",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Ignmarketing",
+        "name": "Startupora",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Starphas",
+        "name": "Starciph",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Starorbi",
+        "name": "Ciphmark",
         "tlds": [
           "com"
         ],
         "style": "auto"
+      },
+      {
+        "name": "Marketingiva",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Ciphmark",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Markquan",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Maraxu",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
       },
       {
         "name": "Marketingan",
         "tlds": [
           "com"
         ],
-        "style": "auto"
-      },
-      {
-        "name": "Staali",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Staazo",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Starpris",
-        "tlds": [
-          "com"
-        ],
         "style": "brandable"
       },
       {
-        "name": "Startupara",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Staeku",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Staoro",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Kinestartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "compound"
-      },
-      {
-        "name": "Startixa",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Pulsmark",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Markivoi",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Markizio",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Startixa",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Markfeat",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Markiziox",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Markonza",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      },
-      {
-        "name": "Markovex",
-        "tlds": [
-          "com"
-        ],
-        "style": "alternate"
-      }
-    ],
-    "Real Estate & Proptech": [
-      {
-        "name": "Prisstar",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Starorbi",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Lumreal",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Staixe",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Staaxo",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Startupiva",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Phasreal",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Starphas",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Realzeni",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Starzeni",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Jubreal",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Cogstartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Kinestartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "compound"
-      },
-      {
-        "name": "Kinereal",
+        "name": "Lumistartup",
         "tlds": [
           "com"
         ],
@@ -839,69 +466,55 @@
         "style": "real_word"
       }
     ],
-    "Travel & Hospitality": [
+    "Real Estate & Proptech": [
       {
-        "name": "Vivstartup",
+        "name": "Startupora",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Stauku",
+        "name": "Realphas",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Travnexu",
+        "name": "Starciph",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Startupara",
+        "name": "Starciph",
         "tlds": [
           "com"
         ],
-        "style": "auto"
+        "style": "brandable"
       },
       {
-        "name": "Traona",
+        "name": "Realphas",
         "tlds": [
           "com"
         ],
-        "style": "auto"
+        "style": "brandable"
       },
       {
-        "name": "Starnexu",
+        "name": "Starorbi",
         "tlds": [
           "com"
         ],
-        "style": "auto"
+        "style": "brandable"
       },
       {
-        "name": "Traaxe",
+        "name": "Ciphreal",
         "tlds": [
           "com"
         ],
-        "style": "auto"
-      },
-      {
-        "name": "Traevu",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Traaxu",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
+        "style": "brandable"
       },
       {
         "name": "Startupova",
@@ -911,49 +524,114 @@
         "style": "brandable"
       },
       {
-        "name": "Traezu",
+        "name": "Starpris",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      }
+    ],
+    "Travel & Hospitality": [
+      {
+        "name": "Travnexu",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Staeri",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Traara",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Stauxu",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Travorbi",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Traenu",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Zenitrav",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Trauzi",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Traaxa",
+        "name": "Starphas",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Fluxtrav",
+        "name": "Staevu",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Nexutrav",
+        "name": "Travciph",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Staeru",
+        "name": "Startupova",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Traoxi",
+        "name": "Traona",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Velstartup",
+        "name": "Quantrav",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Staona",
         "tlds": [
           "com"
         ],
@@ -967,7 +645,42 @@
         "style": "compound"
       },
       {
+        "name": "Kinestartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
+        "name": "Velostartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "compound"
+      },
+      {
         "name": "Statrav",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Startupkaly",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Terrastartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Startupwarp",
         "tlds": [
           "com"
         ],
@@ -990,11 +703,174 @@
     ],
     "Food & Beverage": [
       {
-        "name": "Lumstartup",
+        "name": "Phasfood",
         "tlds": [
           "com"
         ],
         "style": "auto"
+      },
+      {
+        "name": "Foodorbi",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Startupara",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Foodnexu",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Velstartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Jubstartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Staevi",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Staoxi",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Startupiva",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Startupova",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Foodpris",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Foodorbi",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Nebulafood",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Phasestartup",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      }
+    ],
+    "Education & Edtech": [
+      {
+        "name": "Eduive",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Educflux",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Eduavo",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Educorbi",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Staako",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
+      },
+      {
+        "name": "Educpris",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Educationuna",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Staaxo",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Startupuna",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
+      },
+      {
+        "name": "Educnexu",
+        "tlds": [
+          "com"
+        ],
+        "style": "brandable"
       },
       {
         "name": "Startupora",
@@ -1004,7 +880,7 @@
         "style": "brandable"
       },
       {
-        "name": "Staeti",
+        "name": "Staizu",
         "tlds": [
           "com"
         ],
@@ -1018,188 +894,32 @@
         "style": "brandable"
       },
       {
-        "name": "Starpris",
+        "name": "Educzeni",
         "tlds": [
           "com"
         ],
         "style": "brandable"
-      },
-      {
-        "name": "Jubfood",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Ciphfood",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Foodciph",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Truefood",
-        "tlds": [
-          "com"
-        ],
-        "style": "compound"
-      },
-      {
-        "name": "Kinestartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "compound"
-      },
-      {
-        "name": "Daemonstartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Iodinestartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Startupzenith",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Chronosstartup",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      }
-    ],
-    "Education & Edtech": [
-      {
-        "name": "Prisstar",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Eduivo",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Zenieduc",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
       },
       {
         "name": "Staona",
         "tlds": [
           "com"
         ],
-        "style": "auto"
+        "style": "brandable"
       },
       {
-        "name": "Educpris",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Staolo",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Eduixe",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Startupora",
-        "tlds": [
-          "com"
-        ],
-        "style": "auto"
-      },
-      {
-        "name": "Staora",
+        "name": "Eduumu",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Nexueduc",
+        "name": "Startupsparc",
         "tlds": [
           "com"
         ],
-        "style": "brandable"
-      },
-      {
-        "name": "Eduazo",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Zenieduc",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Priseduc",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Prisstar",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Staeru",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
-      },
-      {
-        "name": "Igneducation",
-        "tlds": [
-          "com"
-        ],
-        "style": "brandable"
+        "style": "compound"
       },
       {
         "name": "Veloeducation",
@@ -1209,35 +929,21 @@
         "style": "compound"
       },
       {
-        "name": "Startupaurora",
+        "name": "Phasestartup",
         "tlds": [
           "com"
         ],
         "style": "real_word"
       },
       {
-        "name": "Cipherstartup",
+        "name": "Educationoptic",
         "tlds": [
           "com"
         ],
         "style": "real_word"
       },
       {
-        "name": "Educationonyx",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Startupzenith",
-        "tlds": [
-          "com"
-        ],
-        "style": "real_word"
-      },
-      {
-        "name": "Educationhelix",
+        "name": "Educationhalo",
         "tlds": [
           "com"
         ],
@@ -1246,67 +952,67 @@
     ],
     "Gaming & Esports": [
       {
-        "name": "Gamingara",
+        "name": "Gamingan",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Nexugami",
+        "name": "Prisgami",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Gamuxi",
+        "name": "Starnexu",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Gamingova",
+        "name": "Startupova",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Gamizeni",
+        "name": "Velgaming",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Gamoru",
+        "name": "Gamimi",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Gamiorbi",
+        "name": "Stauta",
         "tlds": [
           "com"
         ],
         "style": "auto"
       },
       {
-        "name": "Starpris",
+        "name": "Staoti",
         "tlds": [
           "com"
         ],
-        "style": "brandable"
+        "style": "auto"
       },
       {
-        "name": "Gamiquan",
+        "name": "Phasstar",
         "tlds": [
           "com"
         ],
-        "style": "brandable"
+        "style": "auto"
       },
       {
         "name": "Gamingan",
@@ -1316,28 +1022,28 @@
         "style": "brandable"
       },
       {
-        "name": "Staazu",
+        "name": "Staali",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Gamuke",
+        "name": "Vergaming",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Gamuvo",
+        "name": "Startupiva",
         "tlds": [
           "com"
         ],
         "style": "brandable"
       },
       {
-        "name": "Staano",
+        "name": "Cogstartup",
         "tlds": [
           "com"
         ],
@@ -1351,11 +1057,55 @@
         "style": "compound"
       },
       {
-        "name": "Startupsparc",
+        "name": "Kinestartup",
         "tlds": [
           "com"
         ],
         "style": "compound"
+      },
+      {
+        "name": "Stagami",
+        "tlds": [
+          "com"
+        ],
+        "style": "real_word"
+      },
+      {
+        "name": "Kaleeza",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Gamoraq",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Pulsixa",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      },
+      {
+        "name": "Fulvora",
+        "tlds": [
+          "com"
+        ],
+        "style": "short"
+      }
+    ],
+    "Fitness & Sports": [
+      {
+        "name": "Kinavera",
+        "tlds": [
+          "com"
+        ],
+        "style": "auto"
       }
     ]
   },
@@ -1416,6 +1166,11 @@
     "Education & Edtech|short",
     "Gaming & Esports|auto",
     "Gaming & Esports|brandable",
-    "Gaming & Esports|compound"
+    "Gaming & Esports|compound",
+    "Gaming & Esports|real_word",
+    "Gaming & Esports|alternate",
+    "Gaming & Esports|short",
+    "Fitness & Sports|auto",
+    "Fitness & Sports|brandable"
   ]
 }

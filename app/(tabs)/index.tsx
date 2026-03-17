@@ -68,7 +68,7 @@ export default function GeneratorScreen() {
 
     // Effect 2: Auto-generate once the URL keyword has been committed to state
     useEffect(() => {
-        if (autoGenerate && keyword.trim()) {
+        if (autoGenerate) {
             setAutoGenerate(false);
             handleGenerate(false);
         }
@@ -112,7 +112,6 @@ export default function GeneratorScreen() {
     }, [session]);
 
     const handleGenerate = async (append: boolean = false) => {
-        if (!keyword.trim()) return;
 
         // AUTHENTICATION GATE
         if (!session) {

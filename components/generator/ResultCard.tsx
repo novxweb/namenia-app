@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import { View, Text, Pressable, ActivityIndicator } from 'react-native';
 import { AvailabilityResult } from '@/core/services/availability';
 import { GeneratedName } from '@/core/services/generator';
 import { cn } from '@/core/utils/cn';
-import { Heart, Copy, Check, Folder } from 'lucide-react-native';
+import { Heart, Copy, Check, Folder, Star } from 'lucide-react-native';
 import * as Clipboard from 'expo-clipboard';
 import { useShortlist } from '@/core/contexts/ShortlistContext';
 import { FolderSelector } from './FolderSelector';
+import { AuthContext } from '@/core/contexts/AuthContextValue';
+import { saveNameRating } from '@/core/services/ratings';
 
 interface ResultCardProps {
     result: GeneratedName;
@@ -20,6 +22,32 @@ export function ResultCard({ result, index }: ResultCardProps) {
     const [folderSelectorVisible, setFolderSelectorVisible] = useState(false);
 
     const isSaved = isInShortlist(result.name);
+    const { session } = useContext(AuthContext) || {};
+    
+    // Rating state
+    const [rating, setRating] = useState<number>(0);
+    const [isRatingSaving, setIsRatingSaving] = useState(false);
+    
+    // Handle rating selection
+    const handleRatingSelect = async (selectedRating: number) => {
+        if (!session?.user?.id) {
+            // Must be logged in to rate
+            // In a real app we might redirect to login, but for now just ignore or alert
+            console.warn("User must be logged in to rate names");
+            return;
+        }
+
+        setRating(selectedRating);
+        setIsRatingSaving(true);
+        try {
+            await saveNameRating(session.user.id, result.name, selectedRating);
+        } catch (e) {
+            console.error("Failed to save rating", e);
+            // Optionally revert rating
+        } finally {
+            setIsRatingSaving(false);
+        }
+    };
 
     const handleCopy = async () => {
         await Clipboard.setStringAsync(result.name);
@@ -148,6 +176,33 @@ export function ResultCard({ result, index }: ResultCardProps) {
                                 </Text>
                             </View>
                         )}
+
+                        {/* Rating Component */}
+                        <View className="mt-4 pt-4 border-t border-slate-100 dark:border-slate-700">
+                            <View className="flex-row items-center justify-between mb-2">
+                                <Text className="text-xs font-bold text-slate-500 uppercase tracking-wider">Rate this name</Text>
+                                {isRatingSaving && <ActivityIndicator size="small" color="#00cba0" />}
+                            </View>
+                            <View className="flex-row items-center justify-between">
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                                    <Pressable
+                                        key={num}
+                                        onPress={() => handleRatingSelect(num)}
+                                        className={cn(
+                                            "w-7 h-7 rounded-sm items-center justify-center border",
+                                            rating === num 
+                                                ? "bg-amber-100 border-amber-300 dark:bg-amber-900/40 dark:border-amber-700" 
+                                                : "bg-slate-50 border-slate-200 dark:bg-slate-800 dark:border-slate-700 active:bg-slate-100 dark:active:bg-slate-700"
+                                        )}
+                                    >
+                                        <Text className={cn(
+                                            "text-xs font-semibold",
+                                            rating === num ? "text-amber-700 dark:text-amber-400" : "text-slate-600 dark:text-slate-400"
+                                        )}>{num}</Text>
+                                    </Pressable>
+                                ))}
+                            </View>
+                        </View>
 
                     </View>
                 </View>
